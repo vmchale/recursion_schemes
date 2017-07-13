@@ -8,19 +8,19 @@ module Recursion_schemes.Lib
 
 -- | Fix-point data type for catamorphisms of various kinds
 data Fix : (Type -> Type) -> Type where
-  FixPoint : f (Fix f) -> Fix f
+  Fx : f (Fix f) -> Fix f
 
 project : Fix f -> f (Fix f)
-project (FixPoint x) = x
+project (Fx x) = x
 
 embed : f (Fix f) -> Fix f
-embed = FixPoint
+embed = Fx
 
 cata : Functor f => (f a -> a) -> Fix f -> a
 cata f = f . map (cata f) . project
 
 para : Functor f => (f (Fix f, a) -> a) -> Fix f -> a
-para f = snd . cata (\x => (FixPoint $ map fst x, f x))
+para f = snd . cata (\x => (Fx $ map fst x, f x))
 
 zygo : Functor f => (f b -> b) -> (f (b, a) -> a) -> Fix f -> a
 zygo f g = snd . cata (\x => (f $ map fst x, g x))
