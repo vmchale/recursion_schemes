@@ -1,0 +1,7 @@
+package recursion_schemes
+
+sourceloc  = git://git@github.com:vmchale/recursion_schemes.git
+bugtracker = http://www.github.com/vmchale/recursion_schemes/issues
+
+modules = Recursion_schemes
+        , Recursion_schemes.Lib
