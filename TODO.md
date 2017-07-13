@@ -1,0 +1,13 @@
+- [x] catamorphism
+- [x] paramorphism
+- [ ] futumorphism
+- [x] mutumorphism
+- [x] zygomorphism
+- [ ] prepromorphism
+- [ ] histomorphism
+- [ ] dynamorphism
+- [ ] chronomorphism
+- [ ] anamorphism
+- [ ] apomorphism
+- [ ] postpromorphism
+- [x] hylomorphism

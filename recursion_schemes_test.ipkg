@@ -5,8 +5,7 @@ bugtracker = http://www.github.com/vmchale/recursion_schemes/issues
 
 pkgs = specdris
 
-modules = Recursion_schemes
-        , Recursion_schemes.Lib
+modules = Recursion_schemes.Lib
         , Test.Spec
 
 tests = Test.Spec.specSuite
