@@ -1,7 +1,7 @@
 # recursion_schemes
 
 This is a library providing recursion schemes for Idris. It it is loosely based
-off Edward Kmett's [Haskell
+on Edward Kmett's [Haskell
 library](https://hackage.haskell.org/package/recursion-schemes).
 
 ## Installation
