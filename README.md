@@ -4,6 +4,9 @@ This is a library providing recursion schemes for Idris. It it is loosely based
 on Edward Kmett's [Haskell
 library](https://hackage.haskell.org/package/recursion-schemes).
 
+As it stands, I'm not entirely sure if it works - Idris definitely has a bug,
+but then I also might be doing something stupid.
+
 ## Installation
 
 To install:
