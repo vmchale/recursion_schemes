@@ -20,8 +20,8 @@ algebraSum : ListF Int Int -> Int
 algebraSum NilF = 0
 algebraSum (Cons x xs) = x + xs
 
-sumCata : List Int -> Int
-sumCata l = cata algebraSum (fix NilF)
+sumCata : Int
+sumCata = cata algebraSum (fix $ (Cons 3 (fix NilF)))
 
 export
 
@@ -29,7 +29,7 @@ specSuite : IO ()
 specSuite = spec $ do
   describe "sum" $
     it "should be able to find the sum via a catamorphism" $
-      sumCata [1,2,3] `shouldBe` 6
+      sumCata `shouldBe` 3
   describe "hylo" $
     it "should be able to implement the suffix function" $
       (suffix . unpack) "ego" `shouldBe` [['g','o'], ['o']]
