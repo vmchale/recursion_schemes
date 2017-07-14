@@ -4,6 +4,8 @@
 -- --------------------------------------------------------------------- [ EOH ]
 module Data.Functor.Foldable
 
+import Control.Monad.Free
+
 %access export
 
 -- | Fix-point data type for catamorphisms of various kinds
@@ -18,6 +20,9 @@ unfix (Fx x) = x
 
 ana : Functor f => (a -> f a) -> a -> Fix f
 ana g = fix . map (ana g) . g
+
+--futu : Functor f => (a -> f (Free f a)) -> a -> Fix f
+--futu g = fix . map (futu g) . g
 
 apo : Functor f => (a -> f (Either (Fix f)  a)) -> a -> Fix f
 apo g = fix . map (either id (apo g)) . g
