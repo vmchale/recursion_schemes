@@ -33,4 +33,4 @@ to be of use.
 
 ### Examples
 
-In the `Test.Spec` module you may find examples.
+In the `Test.Spec` module there are several examples.
