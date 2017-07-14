@@ -3,11 +3,13 @@
 - [ ] futumorphism
 - [x] mutumorphism
 - [x] zygomorphism
-- [ ] prepromorphism
+- [x] prepromorphism
 - [ ] histomorphism
 - [ ] dynamorphism
 - [ ] chronomorphism
-- [ ] anamorphism
-- [ ] apomorphism
-- [ ] postpromorphism
+- [x] anamorphism
+- [x] apomorphism
+- [x] postpromorphism
 - [x] hylomorphism
+nice stuff:
+- [ ] fancy type-level chicanery

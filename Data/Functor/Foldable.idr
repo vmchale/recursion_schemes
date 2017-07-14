@@ -4,45 +4,32 @@
 -- --------------------------------------------------------------------- [ EOH ]
 module Data.Functor.Foldable
 
-import Prelude.List
-
 %access export
 
 -- | Fix-point data type for catamorphisms of various kinds
 data Fix : (Type -> Type) -> Type where
   Fx : f (Fix f) -> Fix f
 
-data ListF : Type -> Type -> Type where
-  NilF : ListF _ _
-  Cons : a -> b -> ListF a b
+fix : f (Fix f) -> Fix f
+fix = Fx
 
 unfix : Fix f -> f (Fix f)
 unfix (Fx x) = x
 
-implementation Functor (ListF a) where
-  map _ NilF       = NilF
-  map f (Cons a b) = Cons a (f b)
+ana : Functor f => (a -> f a) -> a -> Fix f
+ana g = fix . map (ana g) . g
 
--- | Ideally, we'd get something nicer like in Haskell, but we don't have that unfortunately :(
-interface Functor f => Recursive (f : Type -> Type) (t : Type) where
-  project : t -> f t
+apo : Functor f => (a -> f (Either (Fix f)  a)) -> a -> Fix f
+apo g = fix . map (either id (apo g)) . g
 
-interface Functor f => Corecursive (f : Type -> Type) (t : Type) where
-  embed : f t -> t
-
-cata' : (Functor f, Recursive f a) => (f a -> a) -> a -> a
-cata' f = c where c = f . map c . project
-
-implementation Recursive (ListF a) (List a) where
-  project [] = NilF
-  project (x::xs) = Cons x xs
-
-implementation Corecursive (ListF a) (List a) where
-  embed NilF = []
-  embed (Cons x xs) = x::xs
-
+postpro : Functor f => (f (Fix f) -> f (Fix f)) -> (a -> f a) -> a -> Fix f
+postpro e g = fix . map (ana (e . unfix) . (postpro e g)) . g
+  
 cata : Functor f => (f a -> a) -> Fix f -> a
 cata f = f . map (cata f) . unfix
+
+prepro : Functor f => (f (Fix f) -> f (Fix f)) -> (f a -> a) -> Fix f -> a
+prepro n f = f . map ((prepro n f) . cata (fix . n)) . unfix
 
 para : Functor f => (f (Fix f, a) -> a) -> Fix f -> a
 para f = snd . cata (\x => (Fx $ map fst x, f x))
