@@ -1,12 +1,14 @@
 module Test.Spec
 
 import Specdris.Spec
-import Recursion_schemes.Lib
+import Data.Functor.Foldable
+import Data.Vect
 
 export
 
 specSuite : IO ()
 specSuite = spec $ do
-  describe "sum" $
-    it "should sum a list correctly" $
-      sum [1,2,3] `shouldBe` 6
+  describe "something trivial" $
+    it "should add two numbers correctly" $
+      14 + 3 `shouldBe` 17
+
