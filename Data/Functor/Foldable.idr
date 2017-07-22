@@ -57,7 +57,6 @@ zygo f g = snd . cata (\x => (f $ map fst x, g x))
 mutu : Functor f => (f (b, a) -> b) -> (f (b, a) -> a) -> Fix f -> a
 mutu f g = snd . cata (\x => (f x, g x))
 
-
 ||| Mendler's histomorphism
 mhisto : (((Fix f) -> c) -> (Fix f -> f (Fix f)) -> f (Fix f) -> c) -> Fix f -> c
 mhisto psi = psi (mhisto psi) unfix . unfix
@@ -73,8 +72,8 @@ hylo f g = h
 
 ||| Elgot algebra (see [this paper](https://arxiv.org/abs/cs/0609040))
 elgot : Functor f => (f a -> a) -> (b -> Either a (f b)) -> b -> a
-elgot phi psi = h where h = (id `either` phi . map h) . psi
+elgot φ ψ = h where h = (id `either` φ . map h) . ψ
 
 ||| Elgot coalgebra
 coelgot : Functor f => ((a, f b) -> b) -> (a -> f a) -> a -> b
-coelgot phi psi = h where h = phi . (\x => (x, (map h . psi) x))
+coelgot φ ψ = h where h = φ . (\x => (x, (map h . ψ) x))
