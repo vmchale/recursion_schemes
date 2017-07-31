@@ -37,7 +37,7 @@ apo g = fix . map (either id (apo g)) . g
 postpro : Functor f => (f (Fix f) -> f (Fix f)) -> (a -> f a) -> a -> Fix f
 postpro e g = fix . map (ana (e . unfix) . (postpro e g)) . g
 
-||| Catamorphism
+||| Catamorphism (see [here](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.41.125&rep=rep1&type=pdf))
 cata : Functor f => (f a -> a) -> Fix f -> a
 cata f = f . map (cata f) . unfix
 
@@ -49,7 +49,7 @@ prepro n f = f . map ((prepro n f) . cata (fix . n)) . unfix
 para : Functor f => (f (Fix f, a) -> a) -> Fix f -> a
 para f = snd . cata (\x => (Fx $ map fst x, f x))
 
-||| Zygomorphism
+||| Zygomorphism (see [here](http://www.iis.sinica.edu.tw/~scm/pub/mds.pdf) for a neat example)
 zygo : Functor f => (f b -> b) -> (f (b, a) -> a) -> Fix f -> a
 zygo f g = snd . cata (\x => (f $ map fst x, g x))
 
