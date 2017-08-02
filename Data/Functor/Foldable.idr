@@ -68,7 +68,7 @@ mcata psi = psi (mcata psi) . unfix
 ||| Hylomorphism
 hylo : Functor f => (f b -> b) -> (a -> f a) -> a -> b
 hylo f g = h
-  where h = f . map h . g
+  where h x = f . map h . g $ x
 
 ||| Elgot algebra (see [this paper](https://arxiv.org/abs/cs/0609040))
 elgot : Functor f => (f a -> a) -> (b -> Either a (f b)) -> b -> a

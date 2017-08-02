@@ -4,8 +4,8 @@ This is a library providing recursion schemes for Idris. It it is loosely based
 on Edward Kmett's [Haskell
 library](https://hackage.haskell.org/package/recursion-schemes).
 
-As it stands, it segfaults if you try to do anything. So it is very much a work
-in progress.
+As it stand, I'm not sure how reliable it is. If you get a segfault anywhere,
+please do let me know and I can likely fix it.
 
 ## Installation
 
