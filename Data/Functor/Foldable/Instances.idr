@@ -1,4 +1,4 @@
--- ----------------------------------------------------------------- [ Lib.idr ]
+-- ------------------------------------- [ Data.Functor.Foldable.Instances.idr ]
 -- Module      : Data.Functor.Foldable.Instances
 -- Description : Instances of 'Recursive' and 'Corecursive' for various
 --               things.
@@ -24,12 +24,18 @@ interface Functor f => Corecursive (f : Type -> Type) (t : Type) where
 interface Functor f => Recursive (f : Type -> Type) (t : Type) where
   base' : Type
   project : t -> f t
-  cata : (Recursive f t) => (f t -> t) -> t -> t
-  prepro : (Recursive f t, Corecursive f t) => (f t -> f t) -> (f t -> t) -> t -> t
 
-  cata f = c where c = f . map c . project
-  prepro e f = c where c = f . map (c . (cata (embed . e))) . project
+ana : (Corecursive f t) => (t -> f t) -> t -> t
+ana g = a where a = embed . map a . g
 
+postpro : (Recursive f t, Corecursive f t) => (f t -> f t) -> (t -> f t) -> t -> t
+postpro e g = a where a = embed . map (ana (e . project) . a) . g
+
+cata : (Recursive f t) => (f t -> t) -> t -> t
+cata f = c where c = f . map c . project
+
+prepro : (Recursive f t, Corecursive f t) => (f t -> f t) -> (f t -> t) -> t -> t
+prepro e f = c where c = f . map (c . (cata (embed . e))) . project
 
 implementation Recursive (ListF a) (List a) where
   base' = a
