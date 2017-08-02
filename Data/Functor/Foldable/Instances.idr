@@ -9,17 +9,9 @@ module Data.Functor.Foldable.Instances
 
 %access public export
 
-data StreamF : Type -> Type -> Type where
-  NilStream : StreamF _ _
-  ConsStream : a -> b -> StreamF a b
-
 data ListF : Type -> Type -> Type where
   NilF : ListF _ _
   Cons : a -> b -> ListF a b
-
-implementation Functor (StreamF a) where
-  map _ NilStream       = NilStream
-  map f (ConsStream a b) = ConsStream a (f b)
 
 implementation Functor (ListF a) where
   map _ NilF       = NilF
@@ -48,11 +40,3 @@ implementation Corecursive (ListF a) (List a) where
   base = a
   embed NilF = []
   embed (Cons x xs) = x::xs
-
-implementation Recursive (StreamF a) (Stream a) where
-  base' = a
-  project (x::xs) = ConsStream x xs
-
-implementation Corecursive (StreamF a) (Stream a) where
-  base = a
-  embed (ConsStream x xs) = x::xs

@@ -72,8 +72,8 @@ hylo f g = h
 
 ||| Elgot algebra (see [this paper](https://arxiv.org/abs/cs/0609040))
 elgot : Functor f => (f a -> a) -> (b -> Either a (f b)) -> b -> a
-elgot φ ψ = h where h = (id `either` φ . map h) . ψ
+elgot phi psi = h where h = (id `either` phi . map h) . psi
 
 ||| Elgot coalgebra
 coelgot : Functor f => ((a, f b) -> b) -> (a -> f a) -> a -> b
-coelgot φ ψ = h where h = φ . (\x => (x, (map h . ψ) x))
+coelgot phi psi = h where h = phi . (\x => (x, (map h . psi) x))
