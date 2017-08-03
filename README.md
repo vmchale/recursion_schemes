@@ -4,12 +4,11 @@ This is a library providing recursion schemes for Idris. It it is loosely based
 on Edward Kmett's [Haskell
 library](https://hackage.haskell.org/package/recursion-schemes).
 
-As it stand, I'm not sure how reliable it is. If you get a segfault anywhere,
-please do let me know and I can likely fix it.
+As it stands, it *should* be working now. Let me know if you find any issues.
 
 ## Installation
 
-To install:
+First, install [idris-free](https://github.com/idris-hackers/idris-free). Then:
 
 ```
 idris --install recursion_schemes.ipkg
@@ -19,7 +18,7 @@ To run the tests, install [specdris](https://github.com/pheymann/specdris).
 Then:
 
 ```
-idris --testpkg recursion_schemes_test.ipkg
+idris --testpkg test.ipkg
 ```
 
 ## Use
@@ -33,4 +32,5 @@ to be of use.
 
 ### Examples
 
-In the `Test.Spec` module there are several examples.
+In the `Test.Spec` module there are several examples, including a catamorphism
+and a hylomorphism so far. I hope to add an example zygomorphism shortly.

@@ -7,3 +7,4 @@ pkgs = idris_free
 
 modules = Data.Functor.Foldable
         , Data.Functor.Foldable.Instances
+        , Data.Functor.Foldable.Exotic

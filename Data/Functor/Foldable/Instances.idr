@@ -11,7 +11,17 @@ import Data.Functor.Foldable
 
 %access public export
 
+data ListF : Type -> Type -> Type where
+  NilF : ListF _ _
+  Cons : a -> b -> ListF a b
+
+implementation Functor (ListF a) where
+  map _ NilF       = NilF
+  map f (Cons a b) = Cons a (f b)
+
 implementation Base (List a) (ListF a) where
+  type = (List a)
+  functor = (ListF a)
 
 implementation Recursive (ListF a) (List a) where
   project [] = NilF

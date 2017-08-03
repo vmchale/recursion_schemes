@@ -5,6 +5,7 @@
 - [x] mutumorphism
   - [ ] second version
 - [x] zygomorphism
+  - [ ] plus/minus example
   - [ ] second version
 - [x] prepromorphism
 - [ ] histomorphism

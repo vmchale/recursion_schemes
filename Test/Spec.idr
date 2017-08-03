@@ -10,6 +10,8 @@ algebra' NilF = []
 algebra' (Cons x xs) = x ++ xs
 
 implementation Base (List a) (ListF (List a)) where
+  type = List a
+  functor = ListF (List a)
 
 cataConcat : List (List a) -> List a
 cataConcat = cata algebra'
