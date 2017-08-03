@@ -8,9 +8,6 @@ interface (Functor f) => Base t (f : Type -> Type) where
   type : Type
   functor : Type -> Type
 
-  type {t} = t
-  functor {f} = f
-
 interface (Functor f, Base t f) => Corecursive (f : Type -> Type) (t : Type) where
   embed : (Base t f) => f t -> t
 
