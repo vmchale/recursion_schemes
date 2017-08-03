@@ -1,8 +1,11 @@
 - [x] catamorphism
 - [x] paramorphism
+  - [ ] second version
 - [ ] futumorphism
 - [x] mutumorphism
+  - [ ] second version
 - [x] zygomorphism
+  - [ ] second version
 - [x] prepromorphism
 - [ ] histomorphism
 - [ ] dynamorphism

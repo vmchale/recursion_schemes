@@ -8,7 +8,7 @@ import Control.Monad.Free
 
 -- %default total
 
-%access export
+%access public export
 
 -- | Fix-point data type for catamorphisms of various kinds
 data Fix : (Type -> Type) -> Type where
@@ -21,41 +21,6 @@ fix = Fx
 ||| Unfix a 'Fix f'
 unfix : Fix f -> f (Fix f)
 unfix (Fx x) = x
-
-||| Anamorphism
-ana : Functor f => (a -> f a) -> a -> Fix f
-ana g = fix . map (ana g) . g
-
---futu : Functor f => (a -> f (Free f a)) -> a -> Fix f
---futu g = fix . map (futu g) . g
-
-||| Apomorphism
-apo : Functor f => (a -> f (Either (Fix f)  a)) -> a -> Fix f
-apo g = fix . map (either id (apo g)) . g
-
-||| Postpromorphism
-postpro : Functor f => (f (Fix f) -> f (Fix f)) -> (a -> f a) -> a -> Fix f
-postpro e g = fix . map (ana (e . unfix) . (postpro e g)) . g
-
-||| Catamorphism (see [here](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.41.125&rep=rep1&type=pdf))
-cata : Functor f => (f a -> a) -> Fix f -> a
-cata f = f . map (cata f) . unfix
-
-||| Prepromorphism
-prepro : Functor f => (f (Fix f) -> f (Fix f)) -> (f a -> a) -> Fix f -> a
-prepro n f = f . map ((prepro n f) . cata (fix . n)) . unfix
-
-||| Paramorphism
-para : Functor f => (f (Fix f, a) -> a) -> Fix f -> a
-para f = snd . cata (\x => (Fx $ map fst x, f x))
-
-||| Zygomorphism (see [here](http://www.iis.sinica.edu.tw/~scm/pub/mds.pdf) for a neat example)
-zygo : Functor f => (f b -> b) -> (f (b, a) -> a) -> Fix f -> a
-zygo f g = snd . cata (\x => (f $ map fst x, g x))
-
-||| Mutumorphism
-mutu : Functor f => (f (b, a) -> b) -> (f (b, a) -> a) -> Fix f -> a
-mutu f g = snd . cata (\x => (f x, g x))
 
 ||| Mendler's histomorphism
 mhisto : (((Fix f) -> c) -> (Fix f -> f (Fix f)) -> f (Fix f) -> c) -> Fix f -> c
@@ -77,3 +42,53 @@ elgot phi psi = h where h = (id `either` phi . map h) . psi
 ||| Elgot coalgebra
 coelgot : Functor f => ((a, f b) -> b) -> (a -> f a) -> a -> b
 coelgot phi psi = h where h = phi . (\x => (x, (map h . psi) x))
+
+interface (Functor f) => Base t (f : Type -> Type) where
+  type : Type
+  functor : Type -> Type
+
+  type {t} = t
+  functor {f} = f
+
+data ListF : Type -> Type -> Type where
+  NilF : ListF _ _
+  Cons : a -> b -> ListF a b
+
+implementation Functor (ListF a) where
+  map _ NilF       = NilF
+  map f (Cons a b) = Cons a (f b)
+
+interface (Functor f, Base t f) => Corecursive (f : Type -> Type) (t : Type) where
+  embed : (Base t f) => f t -> t
+
+interface (Base t f, Functor f) => Recursive (f : Type -> Type) (t : Type) where
+  project : (Base t f) => t -> f t
+
+ana : (Corecursive f t, Base a f) => (a -> f a) -> a -> t
+ana g = a'
+  where a' x = embed . map a' . g $ x
+
+postpro : (Recursive f t, Corecursive f t, Base t f) => (f t -> f t) -> (a -> f a) -> a -> t
+postpro e g = a'
+  where a' x = embed . map (ana (e . project) . a') . g $ x
+
+||| Catamorphism (see [here](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.41.125&rep=rep1&type=pdf))
+cata : (Recursive f t, Base a f) => (f a -> a) -> t -> a
+cata f = c 
+  where c x = f . map c . project $ x
+
+prepro : (Recursive f t, Corecursive f t, Base a f) => (f t -> f t) -> (f a -> a) -> t -> a
+prepro e f = c 
+  where c x = f . map (c . (cata (embed . e))) . project $ x
+
+||| Paramorphism
+para : (Recursive f t, Corecursive f t, Base (t, a) f) => (f (t, a) -> a) -> t -> a
+para f = snd . cata (\x => (embed $ map fst x, f x))
+
+||| Mutumorphism
+mutu : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
+mutu f g = snd . cata (\x => (f x, g x))
+
+||| Zygomorphism (see [here](http://www.iis.sinica.edu.tw/~scm/pub/mds.pdf) for a neat example)
+zygo : (Recursive f b, Base (b, a) f) => (f b -> b) -> (f (b, a) -> a) -> b -> a
+zygo f g = snd . cata (\x => (f $ map fst x, g x))

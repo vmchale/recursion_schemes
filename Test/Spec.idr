@@ -12,7 +12,7 @@ algebra' (Cons x xs) = x ++ xs
 implementation Base (List a) (ListF (List a)) where
 
 cataConcat : List (List a) -> List a
-cataConcat = Data.Functor.Foldable.Instances.cata algebra'
+cataConcat = cata algebra'
 
 algebra : ListF (List a) (List (List a)) ->  List (List a)
 algebra NilF = []
