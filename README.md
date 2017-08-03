@@ -4,7 +4,7 @@ This is a library providing recursion schemes for Idris. It it is loosely based
 on Edward Kmett's [Haskell
 library](https://hackage.haskell.org/package/recursion-schemes).
 
-As it stands, it *should* be working now. Let me know if you find any issues.
+It *should* be working now. Let me know if you find any issues.
 
 ## Installation
 
@@ -29,6 +29,11 @@ inspiration behind the Haskell library and is the standard reference on the
 topic. You may also find [Law and Order in
 Algorithmics](https://pdfs.semanticscholar.org/7ca8/326eb63f32502c0fc2324b6217a7bc7e8af4.pdf)
 to be of use.
+
+### Documentation
+
+You can find documentation
+[here](https://vmchale.github.io/recursion_schemes/index.html).
 
 ### Examples
 
