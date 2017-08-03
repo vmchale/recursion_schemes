@@ -24,6 +24,8 @@ implementation Functor (ListF a) where
   map _ NilF       = NilF
   map f (Cons a b) = Cons a (f b)
 
+implementation Base (List a) (ListF (List a)) where
+
 implementation Base (List a) (ListF a) where
 
 interface (Functor f, Base t f) => Corecursive (f : Type -> Type) (t : Type) where
@@ -44,16 +46,14 @@ cata : (Recursive f t, Base a f) => (f a -> a) -> t -> a
 cata f = c 
   where c x = f . map c . project $ x
 
-prepro : (Recursive f t, Corecursive f t) => (f t -> f t) -> (f t -> t) -> t -> t
+prepro : (Recursive f t, Corecursive f t, Base a f) => (f t -> f t) -> (f a -> a) -> t -> a
 prepro e f = c 
   where c x = f . map (c . (cata (embed . e))) . project $ x
 
 implementation Recursive (ListF a) (List a) where
-  base' = a
   project [] = NilF
   project (x::xs) = Cons x xs
 
 implementation Corecursive (ListF a) (List a) where
-  base = a
   embed NilF = []
   embed (Cons x xs) = x::xs
