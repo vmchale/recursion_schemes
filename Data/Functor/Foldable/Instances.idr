@@ -27,12 +27,10 @@ implementation Functor (ListF a) where
 implementation Base (List a) (ListF a) where
 
 interface (Functor f, Base t f) => Corecursive (f : Type -> Type) (t : Type) where
-  base : Type
   embed : (Base t f) => f t -> t
 
-interface Functor f => Recursive (f : Type -> Type) (t : Type) where
-  base' : Type
-  project : t -> f t
+interface (Base t f, Functor f) => Recursive (f : Type -> Type) (t : Type) where
+  project : (Base t f) => t -> f t
 
 ana : (Corecursive f t) => (t -> f t) -> t -> t
 ana g = a 
