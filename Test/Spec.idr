@@ -8,6 +8,7 @@ import Data.Vect
 
 elgotCoalgebra : List a -> Either (List (List a)) (ListF (List a) (List a))
 elgotCoalgebra [] = Right NilF
+elgotCoalgebra (x :: []) = Left ([[x]])
 elgotCoalgebra (x :: xs) = Right (Cons (x :: xs) xs) 
 
 zygoPseudoalgebra : ListF Int (Bool, Int) -> Int
@@ -60,5 +61,5 @@ specSuite =
       it "should be able to implement plusMinus" $
         plusMinus [1,2,3] `shouldBe` -4
     describe "elgot" $
-      it "should be generalize the hylomorphism" $
+      it "should generalize a hylomorphism" $
         (elgotSuffix . unpack) "ego" `shouldBe` [['g','o'], ['o']]
