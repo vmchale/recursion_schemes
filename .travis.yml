@@ -2,6 +2,7 @@ language: nix
 install:
 - nix-env -i cabal-install
 - nix-env -i ghc
+- cabal update
 - cabal install idris
 - bash ci/fetch-deps
 script:
