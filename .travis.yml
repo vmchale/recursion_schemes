@@ -1,3 +1,4 @@
+language: nix
 sudo: false
 cache:
     directories:
@@ -6,8 +7,7 @@ cache:
 addons:
     apt:
         packages:
-            - zlibc
-language: nix
+            - zlib1g-dev
 install:
 - nix-env -i cabal-install
 - nix-env -i ghc
