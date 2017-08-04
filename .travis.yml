@@ -1,3 +1,12 @@
+sudo: false
+cache:
+    directories:
+        - $HOME/.cabal
+        - $HOME/.ghc
+addons:
+    apt:
+        packages:
+            - zlibc
 language: nix
 install:
 - nix-env -i cabal-install
