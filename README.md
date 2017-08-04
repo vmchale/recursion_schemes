@@ -1,5 +1,7 @@
 # recursion_schemes
 
+[![Build Status](https://travis-ci.org/vmchale/recursion_schemes.svg?branch=master)](https://travis-ci.org/vmchale/recursion\_schemes)
+
 This is a library providing recursion schemes for Idris. It it is loosely based
 on Edward Kmett's [Haskell
 library](https://hackage.haskell.org/package/recursion-schemes).

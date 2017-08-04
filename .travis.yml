@@ -1,2 +1,2 @@
 language: nix
-script: nix-shell -A idris-binary --command "./ci/fetch-deps.sh && idris --testpkg test.ipkg"
+script: nix-shell -A idris-binary --command "./ci/fetch-deps && idris --testpkg test.ipkg"
