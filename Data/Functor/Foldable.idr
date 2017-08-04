@@ -1,6 +1,6 @@
 module Data.Functor.Foldable
 
---import Control.Monad.Free
+import Control.Monad.Free
 
 %access public export
 
@@ -28,6 +28,25 @@ postpro e g = a'
 cata : (Recursive f t, Base a f) => (f a -> a) -> t -> a
 cata f = c 
   where c x = f . map c . project $ x
+
+||| Histomorphism.
+{-histo : (Base t f, Recursive f t) => (f (Cofree f a) -> a) -> t -> a
+histo = ?holeyHistomorphismsBatman-}
+
+distFutu : (Functor f) => Free f (f a) -> f (Free f a)
+distFutu (Pure fa) = Pure <$> fa
+distFutu (Bind as) = Bind <$> (distFutu <$> as)
+
+gan : (Corecursive f t, Monad m) => (k : {b : _} -> m (f b) -> f (m b)) -> (g : a -> f (m a)) -> m (f (m a)) -> t
+gan k g x = embed . map ((gan k g) . liftA g . join) . k $ x
+
+||| Generalized Anamorphism
+gana : (Corecursive f t, Base a f, Monad m) => (k : {b : _} -> m (f b) -> f (m b)) -> (g : a -> f (m a)) -> a -> t
+gana k g = (gan k g) . pure . g
+
+||| Futumorphism.
+futu : (Base a f, Corecursive f t, Functor f) => (a -> f (Free f a)) -> a -> t
+futu = gana distFutu
 
 ||| Prepromorphism. Fold a structure while applying a natural transformation at each step.
 prepro : (Recursive f t, Corecursive f t, Base a f) => (f t -> f t) -> (f a -> a) -> t -> a

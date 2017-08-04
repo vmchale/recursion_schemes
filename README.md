@@ -37,5 +37,5 @@ You can find documentation
 
 ### Examples
 
-In the `Test.Spec` module there are several examples, including a catamorphism
-and a hylomorphism so far.
+In the `Test.Spec` module there are several examples, including a catamorphism,
+a zygomorphism, and a hylomorphism so far.
