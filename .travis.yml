@@ -12,6 +12,7 @@ install:
 - nix-env -i cabal-install
 - nix-env -i ghc
 - cabal update
+- cabal install ansi-wl-pprint-0.6.7.3
 - cabal install idris
 - bash ci/fetch-deps
 script:
