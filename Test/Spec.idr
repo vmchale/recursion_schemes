@@ -6,6 +6,10 @@ import Data.Functor.Foldable.Instances
 import Data.Functor.Foldable.Exotic
 import Data.Vect
 
+implementation Base (List a) (ListF (List a)) where
+  type = List a
+  functor = ListF (List a)
+
 elgotCoalgebra : List a -> Either (List (List a)) (ListF (List a) (List a))
 elgotCoalgebra [] = Right NilF
 elgotCoalgebra (x :: []) = Left ([[x]])
@@ -25,10 +29,6 @@ plusMinus = zygo zygoAlgebra zygoPseudoalgebra
 algebra' : ListF (List a) (List a) -> List a
 algebra' NilF = []
 algebra' (Cons x xs) = x ++ xs
-
-implementation Base (List a) (ListF (List a)) where
-  type = List a
-  functor = ListF (List a)
 
 cataConcat : List (List a) -> List a
 cataConcat = cata algebra'
