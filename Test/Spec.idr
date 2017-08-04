@@ -3,7 +3,12 @@ module Test.Spec
 import Specdris.Spec
 import Data.Functor.Foldable
 import Data.Functor.Foldable.Instances
+import Data.Functor.Foldable.Exotic
 import Data.Vect
+
+elgotCoalgebra : List a -> Either (List (List a)) (ListF (List a) (List a))
+elgotCoalgebra [] = Right NilF
+elgotCoalgebra (x :: xs) = Right (Cons (x :: xs) xs) 
 
 zygoPseudoalgebra : ListF Int (Bool, Int) -> Int
 zygoPseudoalgebra NilF = 0
@@ -38,6 +43,9 @@ coalgebra [] = NilF
 suffix : List a -> List (List a)
 suffix = hylo algebra coalgebra . drop 1
 
+elgotSuffix : List a -> List (List a)
+elgotSuffix = elgot algebra elgotCoalgebra . drop 1
+
 export
 specSuite : IO ()
 specSuite = 
@@ -51,3 +59,6 @@ specSuite =
     describe "zygo" $
       it "should be able to implement plusMinus" $
         plusMinus [1,2,3] `shouldBe` -4
+    describe "elgot" $
+      it "should be generalize the hylomorphism" $
+        (elgotSuffix . unpack) "ego" `shouldBe` [['g','o'], ['o']]

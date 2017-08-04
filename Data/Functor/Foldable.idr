@@ -56,17 +56,17 @@ prepro : (Recursive f t, Corecursive f t, Base a f) => (f t -> f t) -> (f a -> a
 prepro e f = c 
   where c x = f . map (c . (cata (embed . e))) . project $ x
 
-||| Paramorphism
-para : (Recursive f t, Corecursive f t, Base (t, a) f) => (f (t, a) -> a) -> t -> a
-para f = snd . cata (\x => (embed $ map fst x, f x))
-
 ||| Mutumorphism
 mutu : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
-mutu f g = snd . cata (\x => (f x, g x))
+mutu f g = snd . cata (\x => (f x, g x)) -- TODO (\x => (f x, g x)) should be liftA2 (,) f g or something
 
 ||| Zygomorphism (see [here](http://www.iis.sinica.edu.tw/~scm/pub/mds.pdf) for a neat example)
 zygo : (Recursive f t, Base t f, Base (b, a) f) => (f b -> b) -> (f (b, a) -> a) -> t -> a
 zygo f g = snd . cata (\x => (f $ map fst x, g x))
+
+||| Paramorphism
+para : (Recursive f t, Corecursive f t, Base (t, a) f) => (f (t, a) -> a) -> t -> a
+para f = snd . cata (\x => (embed $ map fst x, f x))
 
 ||| Hylomorphism. Equivalent to a catamorphism and an anamorphism taken together.
 hylo : Functor f => (f b -> b) -> (a -> f a) -> a -> b

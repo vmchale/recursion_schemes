@@ -21,6 +21,7 @@
 - [x] fancy type-level chicanery
 # tests
 - [x] zygomorphism
+- [x] elgot algebra
 - [x] hylomorphism
 - [x] catamorphism
 - [ ] futumorphism

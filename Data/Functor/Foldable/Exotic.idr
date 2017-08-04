@@ -1,5 +1,6 @@
 module Data.Functor.Foldable.Exotic
 
+import Control.Arrow
 import Data.Functor.Foldable
 import Data.Functor.Foldable.Instances
 
