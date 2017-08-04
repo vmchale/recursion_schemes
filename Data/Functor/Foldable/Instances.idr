@@ -13,12 +13,6 @@ import Data.Functor.Foldable
 data Fix : (Type -> Type) -> Type where
   Fx : f (Fix f) -> Fix f
 
-data Nu : (Functor f) => ((a -> f a) -> a) -> Type where
-  NuF : g -> Nu g
-
-data Mu : ((Functor f) => {a : _} -> (f a -> a) -> a) -> Type where
-  MuF : g -> Mu g
-
 implementation (Functor f) => Base (Fix t) f where
   type = Fix f
   functor = f

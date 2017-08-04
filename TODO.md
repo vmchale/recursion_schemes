@@ -22,6 +22,7 @@
 # tests
 - [x] zygomorphism
 - [x] elgot algebra
+  - [ ] Collatz sequence?
 - [x] hylomorphism
 - [x] catamorphism
 - [ ] futumorphism
