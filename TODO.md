@@ -11,9 +11,11 @@
 - [ ] histomorphism
 - [ ] dynamorphism
 - [ ] chronomorphism
+- [ ] synchromorphism (see this paper:
+  https://www.fernuni-hagen.de/imperia/md/content/fakultaetfuermathematikundinformatik/forschung/berichte/bericht_266.pdf)
 - [x] anamorphism
 - [x] apomorphism
 - [x] postpromorphism
 - [x] hylomorphism
 nice stuff:
-- [ ] fancy type-level chicanery
+- [x] fancy type-level chicanery

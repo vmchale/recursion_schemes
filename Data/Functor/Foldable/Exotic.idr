@@ -15,11 +15,11 @@ unfix : Fix f -> f (Fix f)
 unfix (Fx x) = x
 
 ||| Mendler's histomorphism
-mhisto : (((Fix f) -> c) -> (Fix f -> f (Fix f)) -> f (Fix f) -> c) -> Fix f -> c
+mhisto : ({y : _} -> ((y -> c) -> (y -> f y) -> f y -> c)) -> Fix f -> c
 mhisto psi = psi (mhisto psi) unfix . unfix
 
 ||| Mendler's catamorphism
-mcata : (Functor f) => (((Fix f) -> c) -> f (Fix f) -> c) -> Fix f -> c
+mcata : (Functor f) => ({y : _} -> ((y -> c) -> f y -> c)) -> Fix f -> c
 mcata psi = psi (mcata psi) . unfix
 
 ||| Elgot algebra (see [this paper](https://arxiv.org/abs/cs/0609040))
