@@ -43,7 +43,7 @@ mutu : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b
 mutu f g = snd . cata (\x => (f x, g x))
 
 ||| Zygomorphism (see [here](http://www.iis.sinica.edu.tw/~scm/pub/mds.pdf) for a neat example)
-zygo : (Recursive f b, Base (b, a) f) => (f b -> b) -> (f (b, a) -> a) -> b -> a
+zygo : (Recursive f t, Base t f, Base (b, a) f) => (f b -> b) -> (f (b, a) -> a) -> t -> a
 zygo f g = snd . cata (\x => (f $ map fst x, g x))
 
 ||| Hylomorphism. Equivalent to a catamorphism and an anamorphism taken together.

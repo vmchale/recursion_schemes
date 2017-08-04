@@ -38,4 +38,4 @@ You can find documentation
 ### Examples
 
 In the `Test.Spec` module there are several examples, including a catamorphism
-and a hylomorphism so far. I hope to add an example zygomorphism shortly.
+and a hylomorphism so far.

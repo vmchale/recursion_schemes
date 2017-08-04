@@ -5,6 +5,17 @@ import Data.Functor.Foldable
 import Data.Functor.Foldable.Instances
 import Data.Vect
 
+zygoPseudoalgebra : ListF Int (Bool, Int) -> Int
+zygoPseudoalgebra NilF = 0
+zygoPseudoalgebra (Cons n (b, x)) = if b then (n+x) else (n-x)
+
+zygoAlgebra : ListF Int Bool -> Bool
+zygoAlgebra NilF = False
+zygoAlgebra (Cons _ bool) = not bool
+
+plusMinus : List Int -> Int
+plusMinus = zygo zygoAlgebra zygoPseudoalgebra
+
 algebra' : ListF (List a) (List a) -> List a
 algebra' NilF = []
 algebra' (Cons x xs) = x ++ xs
@@ -37,3 +48,6 @@ specSuite =
     describe "cata" $
       it "should be able to implement 'concat'" $
       (cataConcat . map unpack) [ "I", "am" ] `shouldBe` ['I', 'a', 'm']
+    describe "zygo" $
+      it "should be able to implement plusMinus" $
+        plusMinus [1,2,3] `shouldBe` -4
