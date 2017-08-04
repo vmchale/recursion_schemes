@@ -27,3 +27,5 @@
 - [ ] futumorphism
 # docs
 - [ ] annotate all the arguments
+# proofs
+- [ ] cata/ana/hylo laws

@@ -1,9 +1,9 @@
 language: nix
 sudo: false
-cache:
-    directories:
-        - $HOME/.cabal
-        - $HOME/.ghc
+#cache:
+#    directories:
+#        - $HOME/.cabal
+#        - $HOME/.ghc
 addons:
     apt:
         packages:
