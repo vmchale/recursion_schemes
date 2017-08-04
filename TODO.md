@@ -1,14 +1,14 @@
+# morphisms
 - [x] catamorphism
 - [x] paramorphism
-  - [ ] second version
-- [ ] futumorphism
+  - [ ] implement via zygo?
+- [x] futumorphism
 - [x] mutumorphism
-  - [ ] second version
 - [x] zygomorphism
-  - [ ] plus/minus example
-  - [ ] second version
 - [x] prepromorphism
+- [x] generalized anamorphism
 - [ ] histomorphism
+  - [ ] cofree comonads package lol
 - [ ] dynamorphism
 - [ ] chronomorphism
 - [ ] synchromorphism (see this paper:
@@ -17,5 +17,12 @@
 - [x] apomorphism
 - [x] postpromorphism
 - [x] hylomorphism
-nice stuff:
+# nice stuff
 - [x] fancy type-level chicanery
+# tests
+- [x] zygomorphism
+- [x] hylomorphism
+- [x] catamorphism
+- [ ] futumorphism
+# docs
+- [ ] annotate all the arguments

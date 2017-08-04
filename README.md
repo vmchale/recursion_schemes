@@ -30,12 +30,12 @@ topic. You may also find [Law and Order in
 Algorithmics](https://pdfs.semanticscholar.org/7ca8/326eb63f32502c0fc2324b6217a7bc7e8af4.pdf)
 to be of use.
 
+### Examples
+
+In the `Test.Spec` module there are several examples, including a catamorphism,
+a zygomorphism, and a hylomorphism.
+
 ### Documentation
 
 You can find documentation
 [here](https://vmchale.github.io/recursion_schemes/index.html).
-
-### Examples
-
-In the `Test.Spec` module there are several examples, including a catamorphism,
-a zygomorphism, and a hylomorphism so far.
