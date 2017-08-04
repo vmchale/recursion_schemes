@@ -7,7 +7,7 @@ cache:
 addons:
     apt:
         packages:
-            - liblz-dev
+            - zlib1g-dev
 install:
 - nix-env -i cabal-install
 - nix-env -i ghc
