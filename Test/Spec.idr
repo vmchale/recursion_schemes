@@ -15,6 +15,9 @@ collatzAlgebra = embed
 
 collatzCoalgebra : Int -> Either (List Int) (ListF Int Int)
 collatzCoalgebra 1 = Left [1]
+collatzCoalgebra 2 = Left [2, 1]
+collatzCoalgebra 3 = Left [3, 10, 5, 16, 8, 4, 2, 1]
+collatzCoalgebra 4 = Left [6, 3, 10, 5, 16, 8, 4, 2, 1]
 collatzCoalgebra n with (modInt n 2)
   | 0 = Right $ Cons n (divInt n 2)
   | _ = Right $ Cons n (3 * n + 1)
