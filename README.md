@@ -35,7 +35,7 @@ to be of use.
 ### Examples
 
 In the `Test.Spec` module there are several examples, including a catamorphism,
-a zygomorphism, and a hylomorphism.
+a zygomorphism, an Elgot algebra, and a hylomorphism.
 
 ### Documentation
 
