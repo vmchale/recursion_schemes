@@ -10,6 +10,18 @@ implementation Base (List a) (ListF (List a)) where
   type = List a
   functor = ListF (List a)
 
+collatzAlgebra : ListF Int (List Int) -> (List Int)
+collatzAlgebra = embed
+
+collatzCoalgebra : Int -> Either (List Int) (ListF Int Int)
+collatzCoalgebra 1 = Left [1]
+collatzCoalgebra n with (modInt n 2)
+  | 0 = Right $ Cons n (divInt n 2)
+  | _ = Right $ Cons n (3 * n + 1)
+
+collatz : Int -> List Int
+collatz = elgot collatzAlgebra collatzCoalgebra
+
 elgotCoalgebra : List a -> Either (List (List a)) (ListF (List a) (List a))
 elgotCoalgebra [] = Right NilF
 elgotCoalgebra (x :: []) = Left ([[x]])
@@ -63,3 +75,7 @@ specSuite =
     describe "elgot" $
       it "should generalize a hylomorphism" $
         (elgotSuffix . unpack) "ego" `shouldBe` [['g','o'], ['o']]
+    describe "elgot" $
+      it "should provide a simple way to compute the Collatz sequence associated with a number" $
+        collatz 12 `shouldBe` [12, 6, 3, 10, 5, 16, 8, 4, 2, 1]
+        
