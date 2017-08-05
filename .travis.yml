@@ -11,7 +11,6 @@ addons:
 install:
 - nix-env -i stack
 - nix-env -i ghc
-- cabal update
 - find / -name zlib.h
 - stack --no-terminal --install-ghc install idris
 - bash ci/fetch-deps
