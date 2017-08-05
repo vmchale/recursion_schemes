@@ -19,10 +19,11 @@
 - [x] hylomorphism
 # nice stuff
 - [x] fancy type-level chicanery
+- [ ] Mu, Nu fix-point functors
 # tests
 - [x] zygomorphism
 - [x] elgot algebra
-  - [ ] Collatz sequence?
+  - [x] Collatz sequence?
 - [x] hylomorphism
 - [x] catamorphism
 - [ ] futumorphism
@@ -30,3 +31,5 @@
 - [ ] annotate all the arguments
 # proofs
 - [ ] cata/ana/hylo laws
+# ci
+- [ ] make nix expression fetch/install dependencies?

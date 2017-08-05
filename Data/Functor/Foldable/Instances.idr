@@ -13,6 +13,16 @@ import Data.Functor.Foldable
 data Fix : (Type -> Type) -> Type where
   Fx : f (Fix f) -> Fix f
 
+data Nu : (f : Type -> Type) -> Type -> Type where
+  NuF : ((a -> f a) -> a) -> b -> Nu f b
+
+{-data Mu : (f : Type -> Type) -> Type where
+  MuF : ({ a : _ } -> (f a -> a) -> a) -> Mu f-}
+
+implementation (Functor f) => Base t (Nu f) where
+  type = t
+  functor = (Nu f)
+
 implementation (Functor f) => Base (Fix t) f where
   type = Fix f
   functor = f
@@ -40,6 +50,14 @@ implementation Base (List a) (ListF a) where
 implementation Base (Bool, Int) (ListF Int) where
   type = (Bool, Int)
   functor = ListF Int
+
+-- | Lambek's lemma. 
+lambek : (Recursive f t, Corecursive f t, Base (f t) f) => (t -> f t)
+lambek = cata (map embed)
+
+-- | The dual of Lambek's lemma.
+colambek : (Recursive f t, Corecursive f t, Base (f t) f) => (f t -> t)
+colambek = ana (map project)
 
 implementation Recursive (ListF a) (List a) where
   project [] = NilF

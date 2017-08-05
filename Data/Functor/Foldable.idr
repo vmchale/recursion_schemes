@@ -6,7 +6,7 @@ import Control.Monad.Free
 
 ||| This is an interface which does nothing interesting, but it functions as a
 ||| way of saying "f is a base functor with underlying type t"
-interface (Functor f) => Base t (f : Type -> Type) where
+interface Base t (f : Type -> Type) where
   type : Type
   functor : Type -> Type
 
@@ -16,7 +16,7 @@ interface (Functor f, Base t f) => Corecursive (f : Type -> Type) (t : Type) whe
   embed : (Base t f) => f t -> t
 
 ||| Recursive types correspond to catamorphisms.
-interface (Base t f, Functor f) => Recursive (f : Type -> Type) (t : Type) where
+interface (Functor f, Base t f) => Recursive (f : Type -> Type) (t : Type) where
   project : (Base t f) => t -> f t
 
 ||| Anamorphism, meant to build up a structure recursively.
