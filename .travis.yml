@@ -9,11 +9,11 @@ addons:
         packages:
             - zlib1g-dev
 install:
-- nix-env -i cabal-install
+- nix-env -i stack
 - nix-env -i ghc
 - cabal update
 - find / -name zlib.h
-- cabal install idris
+- stack --no-terminal --install-ghc install idris
 - bash ci/fetch-deps
 script:
 - idris --testpkg test.ipkg
