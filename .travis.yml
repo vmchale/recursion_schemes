@@ -9,12 +9,7 @@ addons:
         packages:
             - zlib1g-dev
 install:
-    #- nix-env -i stack
-    #- nix-env -i ghc
-    #- stack --no-terminal --install-ghc install idris
 - nix-env -f "<nixpkgs>" -iA idrisPackages.idris --dry-run
 - nix-env -f "<nixpkgs>" -iA idrisPackages.lightyear --dry-run
-  # - nix-env -f "<nixpkgs>" -iA haskellPackages.idris
-- bash ci/fetch-deps
 script:
 - idris --testpkg test.ipkg
