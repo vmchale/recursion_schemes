@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html><head><title>IdrisDoc: Data.Functor.Foldable.Exotic</title><link type="text/css" rel="stylesheet" href="../styles.css"></head><body class="namespace"><div class="wrapper"><header><strong>IdrisDoc</strong>: Data.Functor.Foldable.Exotic<nav><a href="../index.html">Index</a></nav></header><div class="container"><h1>Data.Functor.Foldable.Exotic</h1><dl class="decls"><dt id="Data.Functor.Foldable.Exotic.mhisto"><span class="name function" title="Data.Functor.Foldable.Exotic.mhisto">mhisto</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">((<span class="implicit boundvar" title="">y</span> ->
+<span class="implicit boundvar" title="">c</span>) ->
+(<span class="implicit boundvar" title="">y</span> ->
+<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">y</span>) ->
+<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">y</span> ->
+<span class="implicit boundvar" title="">c</span>) ->
+<a class="type" title="Data.Functor.Foldable.Instances.Fix" href="Data.Functor.Foldable.Instances.html#Data.Functor.Foldable.Instances.Fix">Fix</a> <span class="implicit boundvar" title="">f</span> ->
+<span class="implicit boundvar" title="">c</span></span></dt><dd><p>Mendler's histomorphism</p>
+</dd><dt id="Data.Functor.Foldable.Exotic.mcata"><span class="name function" title="Data.Functor.Foldable.Exotic.mcata">mcata</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">((<span class="implicit boundvar" title="">y</span> ->
+<span class="implicit boundvar" title="">c</span>) ->
+<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">y</span> ->
+<span class="implicit boundvar" title="">c</span>) ->
+<a class="type" title="Data.Functor.Foldable.Instances.Fix" href="Data.Functor.Foldable.Instances.html#Data.Functor.Foldable.Instances.Fix">Fix</a> <span class="implicit boundvar" title="">f</span> ->
+<span class="implicit boundvar" title="">c</span></span></dt><dd><p>Mendler's catamorphism</p>
+</dd><dt id="Data.Functor.Foldable.Exotic.elgot"><span class="name function" title="Data.Functor.Foldable.Exotic.elgot">elgot</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Functor.Functor" href="Prelude.Functor.html#Prelude.Functor.Functor">Functor</a> <span class="implicit boundvar" title="">f</span> =>
+(<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span>) ->
+(<span class="implicit boundvar" title="">b</span> ->
+<a class="type" title="Prelude.Either.Either" href="Prelude.Either.html#Prelude.Either.Either">Either</a> <span class="implicit boundvar" title="">a</span>
+(<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">b</span>)) ->
+<span class="implicit boundvar" title="">b</span> ->
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Elgot algebra (see <a href="https://arxiv.org/abs/cs/0609040">this paper</a>)</p>
+</dd><dt id="Data.Functor.Foldable.Exotic.coelgot"><span class="name function" title="Data.Functor.Foldable.Exotic.coelgot">coelgot</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Functor.Functor" href="Prelude.Functor.html#Prelude.Functor.Functor">Functor</a> <span class="implicit boundvar" title="">f</span> =>
+(<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">b</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a> ->
+<span class="implicit boundvar" title="">b</span>) ->
+(<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">a</span>) ->
+<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">b</span></span></dt><dd><p>Elgot coalgebra</p>
+</dd></dl></div></div><footer>Produced by IdrisDoc version 1.0</footer></body></html>

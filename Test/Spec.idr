@@ -6,6 +6,15 @@ import Data.Functor.Foldable.Instances
 import Data.Functor.Foldable.Exotic
 import Data.Vect
 
+evenOdd : Nat -> Bool
+evenOdd = mutu odd even where
+  odd : NatF (Bool, Bool) -> Bool
+  odd ZeroF = False
+  odd (SuccF (_, b)) = b
+  even : NatF (Bool, Bool) -> Bool
+  even ZeroF = True
+  even (SuccF (_, b)) = b
+
 collatzAlgebra : ListF Int (List Int) -> (List Int)
 collatzAlgebra = embed
 
@@ -77,4 +86,6 @@ specSuite =
     describe "elgot" $
       it "should provide a simple way to compute the Collatz sequence associated with a number" $
         collatz 12 `shouldBe` [12, 6, 3, 10, 5, 16, 8, 4, 2, 1]
-        
+    describe "mutu'" $ 
+      it "should be able to do recursion on the natural numbers to check for parity" $
+        (evenOdd . fromIntegerNat) 10 `shouldBe` True

@@ -56,9 +56,13 @@ prepro : (Recursive f t, Corecursive f t, Base a f) => (f t -> f t) -> (f a -> a
 prepro e f = c 
   where c x = f . map (c . (cata (embed . e))) . project $ x
 
+||| Variation on a mutumorphism
+mutu' : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
+mutu' f g = snd . cata (\x => (f x, g x))
+
 ||| Mutumorphism
-mutu : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
-mutu f g = snd . cata (\x => (f x, g x)) -- TODO (\x => (f x, g x)) should be liftA2 (,) f g or something
+mutu : (Recursive f t, Base t f) => (f (a, a) -> a) -> (f (a, a) -> a) -> t -> a
+mutu f g x = g . map (\x => (mutu g f x, mutu f g x)) . project $ x
 
 ||| Zygomorphism (see [here](http://www.iis.sinica.edu.tw/~scm/pub/mds.pdf) for a neat example)
 zygo : (Recursive f t, Base t f, Base (b, a) f) => (f b -> b) -> (f (b, a) -> a) -> t -> a
