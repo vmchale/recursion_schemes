@@ -1,15 +1,4 @@
 language: nix
 sudo: false
-#cache:
-#    directories:
-#        - $HOME/.cabal
-#        - $HOME/.ghc
-addons:
-    apt:
-        packages:
-            - zlib1g-dev
-install:
-- nix-env -f "<nixpkgs>" -iA idrisPackages.idris --dry-run
-  # - nix-env -f "<nixpkgs>" -iA idrisPackages.lightyear --dry-run
 script:
-- idris --testpkg test.ipkg
+- nix-build release.nix
