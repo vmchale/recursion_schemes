@@ -10,6 +10,14 @@ addons:
             - zlib1g-dev
 install:
 - nix-env -f "<nixpkgs>" -iA idrisPackages.idris --dry-run
-- nix-env -f "<nixpkgs>" -iA idrisPackages.lightyear --dry-run
+- git clone https://github.com/pheymann/specdris.git
+- cd sprecdris
+- idris --install specdris.ipkg
+- cd ../
+- git clone https://github.com/idris-hackers/idris-free.git
+- cd idris-free
+- idris --install idris-free.ipkg
+- cd ../
+  # - nix-env -f "<nixpkgs>" -iA idrisPackages.lightyear --dry-run
 script:
 - idris --testpkg test.ipkg
