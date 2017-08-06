@@ -6,7 +6,8 @@ This is a library providing recursion schemes for Idris. It it is loosely based
 on Edward Kmett's [Haskell
 library](https://hackage.haskell.org/package/recursion-schemes).
 
-It *should* be working now. Let me know if you find any issues.
+It *should* be working now. You'll likely have to write some instances yourself.
+Let me know if you find any issues.
 
 ## Installation
 
@@ -45,7 +46,7 @@ to be of use.
 ### Examples
 
 In the `Test.Spec` module there are several examples, including a catamorphism,
-a zygomorphism, an Elgot algebra, and a hylomorphism.
+a zygomorphism, a mutumorphism, an Elgot algebra, and a hylomorphism.
 
 ### Documentation
 

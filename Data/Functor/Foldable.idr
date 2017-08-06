@@ -56,9 +56,10 @@ prepro : (Recursive f t, Corecursive f t, Base a f) => (f t -> f t) -> (f a -> a
 prepro e f = c 
   where c x = f . map (c . (cata (embed . e))) . project $ x
 
-||| Variation on a mutumorphism
-mutu' : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
-mutu' f g = snd . cata (\x => (f x, g x))
+-- TODO for n-ary tuples?
+||| Catamorphism interweaving two data types.
+fancy : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
+fancy f g = snd . cata (\x => (f x, g x))
 
 ||| Mutumorphism
 mutu : (Recursive f t, Base t f) => (f (a, a) -> a) -> (f (a, a) -> a) -> t -> a

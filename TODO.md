@@ -17,6 +17,7 @@
 - [x] apomorphism
 - [x] postpromorphism
 - [x] hylomorphism
+- [ ] monadic versions
 # nice stuff
 - [x] fancy type-level chicanery
 - [ ] Mu, Nu fix-point functors
