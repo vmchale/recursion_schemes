@@ -19,7 +19,8 @@ build-idris-package {
   };
 
   propagatedBuildInputs = 
-  [ prelude 
+  [ 
+  prelude 
   base 
   (let pkgs = import <nixpkgs> { }; in pkgs.idrisPackages.callPackage ./nix-depends/specdris.nix { }) 
   (let pkgs = import <nixpkgs> { }; in pkgs.idrisPackages.callPackage ./nix-depends/idris-free.nix { }) 

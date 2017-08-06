@@ -14,7 +14,7 @@ build-idris-package {
     owner = "pheymann";
     repo = "specdris";
     rev = "fe00346468c663c6db4ddc9ab1e1f55f3df8be59";
-    sha256 = "1xgpijqna3d4cf0i4kchp279gbkns0z699lcvdpvszidsi387lll";
+    sha256 = "0m381fxa8f2qmsifg2vkn12pb3qknnn4zj07bwv21fbn62whxfpi";
   };
 
   propagatedBuildInputs = [ prelude base ];

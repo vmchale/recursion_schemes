@@ -33,3 +33,4 @@
 - [ ] cata/ana/hylo laws
 # ci
 - [ ] make nix expression fetch/install dependencies?
+  - [ ] script to bump dependencies to newest commit & attendant sha hash

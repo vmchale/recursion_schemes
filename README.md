@@ -23,6 +23,16 @@ Then:
 idris --testpkg test.ipkg
 ```
 
+### Nix
+
+If you'd like to try build with [nix](https://nixos.org/nix/):
+
+```
+nix-build release.nix
+```
+
+will handle installing all dependencies for you.
+
 ## Use
 
 The classic paper [Functional programming with bananas, lenses, envelopes and
