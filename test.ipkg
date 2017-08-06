@@ -9,6 +9,7 @@ pkgs = specdris
 modules = Data.Functor.Foldable
         , Data.Functor.Foldable.Instances
         , Data.Functor.Foldable.Exotic
+        , Data.Functor.Foldable.Extra
         , Test.Spec
 
 tests = Test.Spec.specSuite

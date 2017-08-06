@@ -6,10 +6,6 @@ import Data.Functor.Foldable.Instances
 import Data.Functor.Foldable.Exotic
 import Data.Vect
 
-implementation Base (List a) (ListF (List a)) where
-  type = List a
-  functor = ListF (List a)
-
 collatzAlgebra : ListF Int (List Int) -> (List Int)
 collatzAlgebra = embed
 

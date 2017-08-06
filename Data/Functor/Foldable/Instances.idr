@@ -19,6 +19,9 @@ data Nu : (f : Type -> Type) -> Type -> Type where
 {-data Mu : (f : Type -> Type) -> Type where
   MuF : ({ a : _ } -> (f a -> a) -> a) -> Mu f-}
 
+implementation Functor (Nu f) where
+  map g (NuF h a) = NuF h (g a)
+
 implementation (Functor f) => Base t (Nu f) where
   type = t
   functor = (Nu f)
@@ -43,19 +46,15 @@ implementation Functor (ListF a) where
   map _ NilF       = NilF
   map f (Cons a b) = Cons a (f b)
 
-implementation Base (List a) (ListF a) where
-  type = (List a)
+implementation Base b (ListF a) where
+  type = b
   functor = (ListF a)
 
-implementation Base (Bool, Int) (ListF Int) where
-  type = (Bool, Int)
-  functor = ListF Int
-
--- | Lambek's lemma. 
+||| Lambek's lemma assures us this function always exists.
 lambek : (Recursive f t, Corecursive f t, Base (f t) f) => (t -> f t)
 lambek = cata (map embed)
 
--- | The dual of Lambek's lemma.
+||| The dual of Lambek's lemma.
 colambek : (Recursive f t, Corecursive f t, Base (f t) f) => (f t -> t)
 colambek = ana (map project)
 
