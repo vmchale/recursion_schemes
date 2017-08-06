@@ -1,4 +1,8 @@
 language: nix
 sudo: false
+install:
+- nix-env -i stack
+- stack install idris --install-ghc
 script:
-- nix-build release.nix
+- idris --testpkg test.pkg
+  #- nix-build release.nix
