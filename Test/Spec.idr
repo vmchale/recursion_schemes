@@ -25,7 +25,7 @@ collatzCoalgebra n with (modInt n 2)
   | _ = Right $ Cons n (3 * n + 1)
 
 collatz : Int -> List Int
-collatz = shortAna collatzCoalgebra
+collatz = micro collatzCoalgebra
 
 elgotCoalgebra : List a -> Either (List (List a)) (ListF (List a) (List a))
 elgotCoalgebra [] = Right NilF
@@ -80,7 +80,7 @@ specSuite =
     describe "elgot" $
       it "should generalize a hylomorphism" $
         (elgotSuffix . unpack) "ego" `shouldBe` [['g','o'], ['o']]
-    describe "shortAna" $
+    describe "micro" $
       it "should provide a simple way to compute the Collatz sequence associated with a number" $
         collatz 12 `shouldBe` [12, 6, 3, 10, 5, 16, 8, 4, 2, 1]
     describe "mutu'" $ 

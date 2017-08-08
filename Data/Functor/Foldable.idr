@@ -58,8 +58,8 @@ prepro e f = c
 
 -- TODO for n-ary tuples?
 ||| Catamorphism interweaving two data types.
-fancy : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
-fancy f g = snd . cata (\x => (f x, g x))
+dendro : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
+dendro f g = snd . cata (\x => (f x, g x))
 
 ||| Mutumorphism
 mutu : (Recursive f t, Base t f) => (f (a, a) -> a) -> (f (a, a) -> a) -> t -> a
