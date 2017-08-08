@@ -59,5 +59,5 @@ implementation (Base Simple SimpleF) => SubHom SimpleF ComplexF Simple Complex w
 
 dicata : (Recursive f1 t1, Base a1 f1, SubHom f1 f2 t1 t2, Recursive f2 t2, Base a2 f2) => (f1 a1 -> a1) -> (f2 a2 -> a2) -> t2 -> a2
 dicata subFAlgebra fAlgebra = cata composed
-  where composed : (SubHom f1 f2 t1 t2, Recursive f2 t2, Base a2 f2) => f2 a2 -> a2
+  where --composed : (SubHom f1 f2 t1 t2, Recursive f2 t2, Base a2 f2) => f2 a2 -> a2
         composed = phi subFAlgebra fAlgebra
