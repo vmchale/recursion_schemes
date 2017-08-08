@@ -15,9 +15,9 @@ interface (Functor f, Functor g) => SubHom (f : Type -> Type) (g : Type -> Type)
   phi : (Recursive f t1) => (f t1 -> t1) -> (g t2 -> t2) -> (g t2 -> t2)
 
 
-||| Dicatamorphism, simultaneously tearing down two structures at once
-dicata : (Recursive f1 t1, Base a1 f1, Recursive f2 t2, Recursive f1 a1, SubHom f1 f2 a1 a2, Base a2 f2) => (f1 a1 -> a1) -> (f2 a2 -> a2) -> t2 -> a2
-dicata = cata .* phi
+||| Dendromorphism, simultaneously tearing down two structures at once
+dendro : (Recursive f1 t1, Base a1 f1, Recursive f2 t2, Recursive f1 a1, SubHom f1 f2 a1 a2, Base a2 f2) => (f1 a1 -> a1) -> (f2 a2 -> a2) -> t2 -> a2
+dendro = cata .* phi
 
 ||| Mendler's catamorphism
 mcata : ({y : _} -> ((y -> c) -> f y -> c)) -> Fix f -> c

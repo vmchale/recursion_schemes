@@ -56,10 +56,9 @@ prepro : (Recursive f t, Corecursive f t, Base a f) => (f t -> f t) -> (f a -> a
 prepro e f = c 
   where c x = f . map (c . (cata (embed . e))) . project $ x
 
--- TODO for n-ary tuples?
 ||| Catamorphism interweaving two data types.
-dendro : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
-dendro f g = snd . cata (\x => (f x, g x))
+dicata : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
+dicata f g = snd . cata (\x => (f x, g x))
 
 ||| Mutumorphism
 mutu : (Recursive f t, Base t f) => (f (a, a) -> a) -> (f (a, a) -> a) -> t -> a

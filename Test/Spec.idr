@@ -83,6 +83,6 @@ specSuite =
     describe "micro" $
       it "should provide a simple way to compute the Collatz sequence associated with a number" $
         collatz 12 `shouldBe` [12, 6, 3, 10, 5, 16, 8, 4, 2, 1]
-    describe "mutu'" $ 
+    describe "mutu" $ 
       it "should be able to do recursion on the natural numbers to check for parity" $
         (evenOdd . fromIntegerNat) 10 `shouldBe` True
