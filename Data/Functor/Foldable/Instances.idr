@@ -16,8 +16,6 @@ implementation Functor NatF where
   map g (SuccF a) = SuccF (g a)
 
 implementation Base Nat NatF where
-  type = Nat
-  functor = NatF
 
 implementation Recursive NatF Nat where
   project Z = ZeroF
@@ -41,12 +39,8 @@ implementation Functor (Nu f) where
   map g (NuF h a) = NuF h (g a)
 
 implementation (Functor f) => Base t (Nu f) where
-  type = t
-  functor = (Nu f)
 
 implementation (Functor f) => Base (Fix t) f where
-  type = Fix f
-  functor = f
 
 ||| Create a fix-point with a functor
 fix : f (Fix f) -> Fix f
@@ -65,8 +59,6 @@ implementation Functor (ListF a) where
   map f (Cons a b) = Cons a (f b)
 
 implementation Base b (ListF a) where
-  type = b
-  functor = (ListF a)
 
 ||| Lambek's lemma assures us this function always exists.
 lambek : (Recursive f t, Corecursive f t, Base (f t) f) => (t -> f t)

@@ -7,17 +7,17 @@ import Control.Monad.Free
 ||| This is an interface which does nothing interesting, but it functions as a
 ||| way of saying "f is a base functor with underlying type t"
 interface Base t (f : Type -> Type) where
-  type : Type
-  functor : Type -> Type
+  -- type : Type
+  -- functor : Type -> Type
 
 ||| Interface for corecursive data types. Corecursive types correspond to
 ||| anamorphisms.
 interface (Functor f, Base t f) => Corecursive (f : Type -> Type) (t : Type) where
-  embed : (Base t f) => f t -> t
+  embed : f t -> t
 
 ||| Recursive types correspond to catamorphisms.
 interface (Functor f, Base t f) => Recursive (f : Type -> Type) (t : Type) where
-  project : (Base t f) => t -> f t
+  project : t -> f t
 
 ||| Anamorphism, meant to build up a structure recursively.
 ana : (Corecursive f t, Base a f) => (a -> f a) -> a -> t

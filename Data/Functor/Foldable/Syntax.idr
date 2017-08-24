@@ -35,8 +35,6 @@ implementation Functor ComplexF where
   map f s@(SimpF simple) = s
 
 implementation Base Simple SimpleF where
-  type = Simple
-  functor = SimpleF
 
 implementation (Base Simple SimpleF) => Recursive SimpleF Simple where
   project (List ls) = ListF ls
