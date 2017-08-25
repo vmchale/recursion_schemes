@@ -6,6 +6,12 @@ import Data.Functor.Foldable.Instances
 import Data.Functor.Foldable.Exotic
 import Data.Vect
 
+dedup : (Eq a) => List a -> List a
+dedup = para pseudoalgebra where
+  pseudoalgebra : (Eq a) => ListF a (List a, List a) -> List a
+  pseudoalgebra NilF                 = []
+  pseudoalgebra (Cons x (past, xs))  = if elem x past then xs else x :: xs
+
 evenOdd : Nat -> Bool
 evenOdd = mutu odd even where
   odd : NatF (Bool, Bool) -> Bool
@@ -86,3 +92,6 @@ specSuite =
     describe "mutu" $ 
       it "should be able to do recursion on the natural numbers to check for parity" $
         (evenOdd . fromIntegerNat) 10 `shouldBe` True
+    describe "para" $
+      it "should provide an elegant way to remove duplicates from a list when order doesn't matter" $
+        dedup [1,1,2,3,4,5,4] `shouldBe` [1,2,3,5,4]
