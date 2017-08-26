@@ -29,7 +29,7 @@
 (<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">b</span>)) ->
 <span class="implicit boundvar" title="">b</span> ->
 <span class="implicit boundvar" title="">a</span></span></dt><dd><p>Elgot algebra (see <a href="https://arxiv.org/abs/cs/0609040">this paper</a>)</p>
-</dd><dt id="Data.Functor.Foldable.Exotic.dicata"><span class="name function" title="Data.Functor.Foldable.Exotic.dicata">dicata</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Recursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Recursive">Recursive</a> <span class="implicit boundvar" title="">f1</span>
+</dd><dt id="Data.Functor.Foldable.Exotic.dendro"><span class="name function" title="Data.Functor.Foldable.Exotic.dendro">dendro</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Recursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Recursive">Recursive</a> <span class="implicit boundvar" title="">f1</span>
 <span class="implicit boundvar" title="">t1</span> =>
 <a class="type" title="Data.Functor.Foldable.Base" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Base">Base</a> <span class="implicit boundvar" title="">a1</span>
 <span class="implicit boundvar" title="">f1</span> =>
@@ -43,12 +43,13 @@
 <span class="implicit boundvar" title="">a2</span> =>
 <a class="type" title="Data.Functor.Foldable.Base" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Base">Base</a> <span class="implicit boundvar" title="">a2</span>
 <span class="implicit boundvar" title="">f2</span> =>
+<a class="type" title="Data.Functor.Foldable.Exotic.Subtype" href="Data.Functor.Foldable.Exotic.html#Data.Functor.Foldable.Exotic.Subtype">Subtype</a> <span class="implicit boundvar" title="">a2</span> =>
 (<span class="implicit boundvar" title="">f1</span> <span class="implicit boundvar" title="">a1</span> ->
 <span class="implicit boundvar" title="">a1</span>) ->
 (<span class="implicit boundvar" title="">f2</span> <span class="implicit boundvar" title="">a2</span> ->
 <span class="implicit boundvar" title="">a2</span>) ->
 <span class="implicit boundvar" title="">t2</span> ->
-<span class="implicit boundvar" title="">a2</span></span></dt><dd><p>Dicatamorphism, simultaneously tearing down two structures at once</p>
+<span class="implicit boundvar" title="">a2</span></span></dt><dd><p>A dendromorphism simultaneously tears down two structures at once.</p>
 </dd><dt id="Data.Functor.Foldable.Exotic.coelgot"><span class="name function" title="Data.Functor.Foldable.Exotic.coelgot">coelgot</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Functor.Functor" href="Prelude.Functor.html#Prelude.Functor.Functor">Functor</a> <span class="implicit boundvar" title="">f</span> =>
 (<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
 <span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">b</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a> ->
@@ -57,7 +58,31 @@
 <span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">a</span>) ->
 <span class="implicit boundvar" title="">a</span> ->
 <span class="implicit boundvar" title="">b</span></span></dt><dd><p>Elgot coalgebra</p>
-</dd><dt id="Data.Functor.Foldable.Exotic.SubHom"><span class="word">interface&nbsp;</span><span class="name type" title="Data.Functor.Foldable.Exotic.SubHom">SubHom</span><span class="signature">&nbsp;</span></dt><dd><dl class="decls"><dt id="Data.Functor.Foldable.Exotic.phi"><span class="name function" title="Data.Functor.Foldable.Exotic.phi">phi</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Exotic.SubHom" href="Data.Functor.Foldable.Exotic.html#Data.Functor.Foldable.Exotic.SubHom">SubHom</a> <span class="implicit boundvar" title="">f</span>
+</dd><dt id="Data.Functor.Foldable.Exotic.chema"><span class="name function" title="Data.Functor.Foldable.Exotic.chema">chema</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Corecursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Corecursive">Corecursive</a> <span class="implicit boundvar" title="">f1</span>
+<span class="implicit boundvar" title="">t1</span> =>
+<a class="type" title="Data.Functor.Foldable.Base" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Base">Base</a> <span class="implicit boundvar" title="">a1</span>
+<span class="implicit boundvar" title="">f1</span> =>
+<a class="type" title="Data.Functor.Foldable.Corecursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Corecursive">Corecursive</a> <span class="implicit boundvar" title="">f2</span>
+<span class="implicit boundvar" title="">t2</span> =>
+<a class="type" title="Data.Functor.Foldable.Corecursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Corecursive">Corecursive</a> <span class="implicit boundvar" title="">f1</span>
+<span class="implicit boundvar" title="">a1</span> =>
+<a class="type" title="Data.Functor.Foldable.Exotic.CoSubHom" href="Data.Functor.Foldable.Exotic.html#Data.Functor.Foldable.Exotic.CoSubHom">CoSubHom</a> <span class="implicit boundvar" title="">f1</span>
+<span class="implicit boundvar" title="">f2</span>
+<span class="implicit boundvar" title="">a1</span>
+<span class="implicit boundvar" title="">a2</span> =>
+<a class="type" title="Data.Functor.Foldable.Base" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Base">Base</a> <span class="implicit boundvar" title="">a2</span>
+<span class="implicit boundvar" title="">f2</span> =>
+<a class="type" title="Data.Functor.Foldable.Exotic.Subtype" href="Data.Functor.Foldable.Exotic.html#Data.Functor.Foldable.Exotic.Subtype">Subtype</a> <span class="implicit boundvar" title="">a2</span> =>
+(<span class="implicit boundvar" title="">a1</span> ->
+<span class="implicit boundvar" title="">f1</span> <span class="implicit boundvar" title="">a1</span>) ->
+(<span class="implicit boundvar" title="">a2</span> ->
+<span class="implicit boundvar" title="">f2</span> <span class="implicit boundvar" title="">a2</span>) ->
+<span class="implicit boundvar" title="">a2</span> ->
+<span class="implicit boundvar" title="">t2</span></span></dt><dd><p>A chemamorphism builds up a structure using two base functors.</p>
+</dd><dt id="Data.Functor.Foldable.Exotic.Subtype"><span class="word">interface&nbsp;</span><span class="name type" title="Data.Functor.Foldable.Exotic.Subtype">Subtype</span><span class="signature">&nbsp;</span></dt><dd><dl class="decls"><dt id="Data.Functor.Foldable.Exotic.switch"><span class="name function" title="Data.Functor.Foldable.Exotic.switch">switch</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Exotic.Subtype" href="Data.Functor.Foldable.Exotic.html#Data.Functor.Foldable.Exotic.Subtype">Subtype</a> <span class="implicit boundvar" title="">b</span> =>
+<span class="implicit boundvar" title="">b</span> ->
+<span class="implicit boundvar" title="">b</span></span></dt><dd></dd></dl></dd><dt id="Data.Functor.Foldable.Exotic.SubHom"><span class="word">interface&nbsp;</span><span class="name type" title="Data.Functor.Foldable.Exotic.SubHom">SubHom</span><span class="signature">&nbsp;</span></dt><dd><p>Interface for homomorphisms of F-algebras paramaterized by G-algebras.</p>
+<dl class="decls"><dt id="Data.Functor.Foldable.Exotic.phi"><span class="name function" title="Data.Functor.Foldable.Exotic.phi">phi</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Exotic.SubHom" href="Data.Functor.Foldable.Exotic.html#Data.Functor.Foldable.Exotic.SubHom">SubHom</a> <span class="implicit boundvar" title="">f</span>
 <span class="implicit boundvar" title="">g</span>
 <span class="implicit boundvar" title="">t1</span>
 <span class="implicit boundvar" title="">t2</span> =>
@@ -68,9 +93,16 @@
 (<span class="implicit boundvar" title="">g</span> <span class="implicit boundvar" title="">t2</span> ->
 <span class="implicit boundvar" title="">t2</span>) ->
 <span class="implicit boundvar" title="">g</span> <span class="implicit boundvar" title="">t2</span> ->
-<span class="implicit boundvar" title="">t2</span></span></dt><dd></dd></dl></dd><dt id="Data.Functor.Foldable.Exotic.Hom"><span class="word">interface&nbsp;</span><span class="name type" title="Data.Functor.Foldable.Exotic.Hom">Hom</span><span class="signature">&nbsp;</span></dt><dd><p>Interface holding homomorphisms of F-algebras.</p>
-<dl class="decls"><dt id="Data.Functor.Foldable.Exotic.subtype"><span class="name function" title="Data.Functor.Foldable.Exotic.subtype">subtype</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Exotic.Hom" href="Data.Functor.Foldable.Exotic.html#Data.Functor.Foldable.Exotic.Hom">Hom</a> <span class="implicit boundvar" title="">f</span> =>
-(<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">a</span> ->
-<span class="implicit boundvar" title="">a</span>) ->
-<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">b</span> ->
-<span class="implicit boundvar" title="">b</span></span></dt><dd></dd></dl></dd></dl></div></div><footer>Produced by IdrisDoc version 1.0</footer></body></html>
+<span class="implicit boundvar" title="">t2</span></span></dt><dd></dd></dl></dd><dt id="Data.Functor.Foldable.Exotic.CoSubHom"><span class="word">interface&nbsp;</span><span class="name type" title="Data.Functor.Foldable.Exotic.CoSubHom">CoSubHom</span><span class="signature">&nbsp;</span></dt><dd><p>Interface for homomorphisms of F-coalgebras parametrized by G-coalgebras</p>
+<dl class="decls"><dt id="Data.Functor.Foldable.Exotic.psi"><span class="name function" title="Data.Functor.Foldable.Exotic.psi">psi</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Exotic.CoSubHom" href="Data.Functor.Foldable.Exotic.html#Data.Functor.Foldable.Exotic.CoSubHom">CoSubHom</a> <span class="implicit boundvar" title="">f</span>
+<span class="implicit boundvar" title="">g</span>
+<span class="implicit boundvar" title="">t1</span>
+<span class="implicit boundvar" title="">t2</span> =>
+<a class="type" title="Data.Functor.Foldable.Corecursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Corecursive">Corecursive</a> <span class="implicit boundvar" title="">f</span>
+<span class="implicit boundvar" title="">t1</span> =>
+(<span class="implicit boundvar" title="">t1</span> ->
+<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">t1</span>) ->
+(<span class="implicit boundvar" title="">t2</span> ->
+<span class="implicit boundvar" title="">g</span> <span class="implicit boundvar" title="">t2</span>) ->
+<span class="implicit boundvar" title="">t2</span> ->
+<span class="implicit boundvar" title="">g</span> <span class="implicit boundvar" title="">t2</span></span></dt><dd></dd></dl></dd></dl></div></div><footer>Produced by IdrisDoc version 1.0</footer></body></html>
