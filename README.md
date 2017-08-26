@@ -11,7 +11,8 @@ Let me know if you find any issues.
 
 ## Installation
 
-First, install [idris-free](https://github.com/idris-hackers/idris-free). Then:
+First, install [idris-free](https://github.com/idris-hackers/idris-free) and
+[comonad](https://github.com/vmchale/comonad). Then:
 
 ```
 idris --install recursion_schemes.ipkg
@@ -46,7 +47,8 @@ to be of use.
 ### Examples
 
 In the `Test.Spec` module there are several examples, including a catamorphism,
-a zygomorphism, a mutumorphism, an Elgot algebra, and a hylomorphism.
+a zygomorphism, a mutumorphism, an Elgot algebra, a paramorphism, and a
+hylomorphism.
 
 ### Documentation
 
