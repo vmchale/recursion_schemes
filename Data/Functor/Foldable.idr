@@ -1,6 +1,9 @@
+||| Module containing the main typeclasses and recursion schemes on them.
 module Data.Functor.Foldable
 
 import Control.Monad.Free
+import Control.Comonad
+import Control.Comonad.Cofree
 
 %access public export
 
@@ -31,13 +34,38 @@ postpro e g = a'
 
 ||| Generalized Anamorphism
 ||| @ k A distributive law
-||| @ g A (f . m)-algebra
+||| @ g A (f . m)-coalgebra
 gana : (Corecursive f t, Base a f, Monad m) => (k : {b : _} -> m (f b) -> f (m b)) -> (g : a -> f (m a)) -> a -> t
 gana k g = (gan k g) . pure . g
   where gan : (Corecursive f t, Monad m) => (k : {b : _} -> m (f b) -> f (m b)) -> (g : a -> f (m a)) -> m (f (m a)) -> t
-        gan k g x = embed . map ((gan k g) . liftA g . join) . k $ x
+        gan k g x = embed . map ((gan k g) . map g . join) . k $ x
 
-||| Distributive law 
+||| Generalized catamorphism
+||| @ k A distributive law
+||| @ g A (f . w)-algebra
+gcata : (Recursive f t, Base a f, Comonad w) => (k : {b:_} -> f (w b) -> w (f b)) -> (g : f (w a) -> a) -> t -> a
+gcata k g = g . extract . (gcat k g)
+  where gcat : (Recursive f t, Comonad w) => (k : {b:_} -> f (w b) -> w (f b)) -> (g : f (w a) -> a) -> t -> w (f (w a))
+        gcat k g x = k . map (duplicate . map g . (gcat k g)) . project $ x
+
+
+||| Generalized hylomorphism
+||| @ k A distributive law
+||| @ l A distributive law
+||| @ f' A (f . w)-algebra
+||| @ g' A (f . m)-coalgebra
+ghylo : (Functor f, Comonad w, Monad m) => 
+        (k : {b:_} -> f (w b) -> w (f b)) ->
+        (l : {c:_} -> m (f c) -> f (m c)) ->
+        (f' : f (w b) -> b) ->
+        (g' : a -> f (m a)) ->
+        a -> b
+ghylo k l f' g' = extract . (gh k l f' g') . pure where
+  gh : (Functor f, Comonad w, Monad m) => (k : {d:_} -> f (w d) -> w (f d)) -> (l : {c:_} -> m (f c) -> f (m c)) -> (f' : f (w b) -> b) -> (g' : a -> f (m a)) -> m a -> w b
+  gh k l f' g' x = map f' . k . map (duplicate . (gh k l f' g') . join) . l . map g' $ x
+
+
+||| Distributive law for futumorphisms.
 distFutu : (Functor f) => Free f (f a) -> f (Free f a)
 distFutu (Pure fa) = Pure <$> fa
 distFutu (Bind as) = Bind <$> (distFutu <$> as)
@@ -45,6 +73,15 @@ distFutu (Bind as) = Bind <$> (distFutu <$> as)
 ||| Futumorphism.
 futu : (Base a f, Corecursive f t, Functor f) => (a -> f (Free f a)) -> a -> t
 futu = gana distFutu
+
+||| Distributive law for histomorphisms
+distHisto : (Functor f) => f (Cofree f a) -> Cofree f (f a)
+distHisto = unfold g where
+  g as = (extract <$> as, unwrap <$> as)
+
+||| Histomorphism
+histo : (Base a f, Recursive f t) => (f (Cofree f a) -> a) -> t -> a
+histo = gcata distHisto
 
 ||| Catamorphism. Folds a structure. (see [here](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.41.125&rep=rep1&type=pdf))
 cata : (Recursive f t, Base a f) => (f a -> a) -> t -> a
