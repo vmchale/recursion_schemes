@@ -11,8 +11,8 @@ Let me know if you find any issues.
 
 ## Installation
 
-First, install [idris-free](https://github.com/idris-hackers/idris-free) and
-[comonad](https://github.com/vmchale/comonad). Then:
+First, install [idris-free](https://github.com/idris-hackers/idris-free),
+[comonad](https://github.com/vmchale/comonad) and [composition](https://github.com/vmchale/composition). Then:
 
 ```
 idris --install recursion_schemes.ipkg
