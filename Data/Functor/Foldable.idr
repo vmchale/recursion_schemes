@@ -10,8 +10,6 @@ import Control.Comonad.Cofree
 ||| This is an interface which does nothing interesting, but it functions as a
 ||| way of saying "f is a base functor with underlying type t"
 interface Base t (f : Type -> Type) where
-  -- type : Type
-  -- functor : Type -> Type
 
 ||| Interface for corecursive data types. Corecursive types correspond to
 ||| anamorphisms.
@@ -48,7 +46,6 @@ gcata k g = g . extract . (gcat k g)
   where gcat : (Recursive f t, Comonad w) => (k : {b:_} -> f (w b) -> w (f b)) -> (g : f (w a) -> a) -> t -> w (f (w a))
         gcat k g x = k . map (duplicate . map g . (gcat k g)) . project $ x
 
-
 ||| Generalized hylomorphism
 ||| @ k A distributive law
 ||| @ l A distributive law
@@ -63,7 +60,6 @@ ghylo : (Functor f, Comonad w, Monad m) =>
 ghylo k l f' g' = extract . (gh k l f' g') . pure where
   gh : (Functor f, Comonad w, Monad m) => (k : {d:_} -> f (w d) -> w (f d)) -> (l : {c:_} -> m (f c) -> f (m c)) -> (f' : f (w b) -> b) -> (g' : a -> f (m a)) -> m a -> w b
   gh k l f' g' x = map f' . k . map (duplicate . (gh k l f' g') . join) . l . map g' $ x
-
 
 ||| Distributive law for futumorphisms.
 distFutu : (Functor f) => Free f (f a) -> f (Free f a)
@@ -109,7 +105,7 @@ zygo f g = snd . cata (\x => (f $ map fst x, g x))
 para : (Recursive f t, Corecursive f t, Base (t, a) f) => (f (t, a) -> a) -> t -> a
 para f = snd . cata (\x => (embed $ map fst x, f x))
 
-||| Hylomorphism. Equivalent to a catamorphism and an anamorphism taken together.
+||| Hylomorphism; equivalent to a catamorphism and an anamorphism taken together.
 hylo : Functor f => (f b -> b) -> (a -> f a) -> a -> b
 hylo f g = h
   where h x = f . map h . g $ x

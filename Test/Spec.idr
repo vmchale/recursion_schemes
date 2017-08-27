@@ -67,9 +67,6 @@ coalgebra [] = NilF
 suffix : List a -> List (List a)
 suffix = hylo algebra coalgebra . drop 1
 
-elgotSuffix : List a -> List (List a)
-elgotSuffix = elgot algebra elgotCoalgebra . drop 1
-
 export
 specSuite : IO ()
 specSuite = 
@@ -83,9 +80,6 @@ specSuite =
     describe "zygo" $
       it "should be able to implement plusMinus" $
         plusMinus [1,2,3] `shouldBe` -4
-    describe "elgot" $
-      it "should generalize a hylomorphism" $
-        (elgotSuffix . unpack) "ego" `shouldBe` [['g','o'], ['o']]
     describe "micro" $
       it "should provide a simple way to compute the Collatz sequence associated with a number" $
         collatz 12 `shouldBe` [12, 6, 3, 10, 5, 16, 8, 4, 2, 1]
