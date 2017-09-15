@@ -5,6 +5,20 @@ import Data.Functor.Foldable
 import Data.Functor.Foldable.Instances
 import Data.Functor.Foldable.Exotic
 import Data.Vect
+import Control.Monad.Free
+
+roundedSqrt : Nat -> Nat
+roundedSqrt = cast . cast {to=Integer} . sqrt . cast
+
+numCoalgebra : Nat -> (ListF Nat Nat)
+numCoalgebra Z = NilF
+numCoalgebra (S n) = (Cons (S n) n)
+
+toN : Nat -> List Nat
+toN = reverse . ana numCoalgebra
+
+isPrime : Nat -> List Nat -> Bool
+isPrime n ns = all (\a => mod n a /= 0) (filter (<= (roundedSqrt n)) ns)
 
 dedup : (Eq a) => List a -> List a
 dedup = para pseudoalgebra where
@@ -89,3 +103,6 @@ specSuite =
     describe "para" $
       it "should provide an elegant way to remove duplicates from a list when order doesn't matter" $
         dedup [1,1,2,3,4,5,4] `shouldBe` [1,2,3,5,4]
+    describe "ana" $
+      it "should give the first n naturals" $
+        toN 5 `shouldBe` [1,2,3,4,5]

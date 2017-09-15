@@ -1,13 +1,50 @@
 module Data.Functor.Foldable.Exotic
 
+import Control.Arrow
+import Control.Monad.Identity
+import Control.Comonad
+import Control.Comonad.Cofree
 import Data.Functor.Foldable
 import Data.Functor.Foldable.Instances
 import Data.Composition
+import Data.Bifunctor
 
 %access public export
 
 interface Subtype b where
   switch : b -> b
+
+-- Notes on indexed data types:
+--     - An IDT is a trialgebra
+-- for a synchromorphism, we need three data types:
+--     1) A structure to traverse (IDT)
+--     2) A "pocket" for intermediate results (IDT)
+--     3) A stucture collecting results (ADT)
+-- We addtionally need:
+--     1) 
+
+{-synchro : BuiltAlgebra -> StructToBuilt -> Structure -> PocketToStruct -> StructToPocket -> PocketAlgebra
+synchro = ?hole-}
+
+
+||| Gibbons' metamorphism. Tear down a structure, transform it, and then build up a new structure
+meta : (Functor f, Base b g, Base a f, Corecursive f t', Recursive g t) => (a -> f a) -> (b -> a) -> (g b -> b) -> t -> t'
+meta f e g = ana f . e . cata g
+
+||| Erwig's metamorphism. Essentially a hylomorphism with a natural
+||| transformation in between. This allows us to use more than one functor in a
+||| hylomorphism.
+hyloPro : (Functor f, Functor g) => (f a -> a) -> ({c:_} -> g c -> f c) -> (b -> g b) -> b -> a
+hyloPro h e k x = h . e . map (hyloPro h e k) . k $ x
+
+||| A dynamorphism builds up with an anamorphism and tears down with a
+||| histomorphism. Useful for lexical scoping.  
+dynaPro : (Functor f, Functor g) => (f (Cofree f a) -> a) -> ({c:_} -> g c -> f c) -> (b -> g b) -> b -> a
+dynaPro phi eta psi = ghylo distHisto distAna phi (eta . map Id . psi)
+
+||| A dynamorphism without a natural transformation in between.
+dyna : (Functor f) => (f (Cofree f a) -> a) -> (b -> f b) -> b -> a
+dyna phi = dynaPro phi id
 
 ||| Interface for homomorphisms of F-algebras paramaterized by G-algebras.
 interface (Functor f, Functor g) => SubHom (f : Type -> Type) (g : Type -> Type) t1 t2 where
@@ -33,6 +70,7 @@ chema = pseudoana .* psi where
 mcata : ({y : _} -> ((y -> c) -> f y -> c)) -> Fix f -> c
 mcata psi = psi (mcata psi) . unfix
 
+--Basically, this forms an F-algebra from a loopkup functoin plus a function that gives us the lookup function
 ||| Mendler's histomorphism
 mhisto : ({y : _} -> ((y -> c) -> (y -> f y) -> f y -> c)) -> Fix f -> c
 mhisto psi = psi (mhisto psi) unfix . unfix

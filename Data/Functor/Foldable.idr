@@ -1,6 +1,7 @@
 ||| Module containing the main typeclasses and recursion schemes on them.
 module Data.Functor.Foldable
 
+import Control.Monad.Identity
 import Control.Monad.Free
 import Control.Comonad
 import Control.Comonad.Cofree
@@ -47,8 +48,8 @@ gcata k g = g . extract . (gcat k g)
         gcat k g x = k . map (duplicate . map g . (gcat k g)) . project $ x
 
 ||| Generalized hylomorphism
-||| @ k A distributive law
-||| @ l A distributive law
+||| @ k A distributive law on f
+||| @ l A distributive law on l
 ||| @ f' A (f . w)-algebra
 ||| @ g' A (f . m)-coalgebra
 ghylo : (Functor f, Comonad w, Monad m) => 
@@ -61,13 +62,17 @@ ghylo k l f' g' = extract . (gh k l f' g') . pure where
   gh : (Functor f, Comonad w, Monad m) => (k : {d:_} -> f (w d) -> w (f d)) -> (l : {c:_} -> m (f c) -> f (m c)) -> (f' : f (w b) -> b) -> (g' : a -> f (m a)) -> m a -> w b
   gh k l f' g' x = map f' . k . map (duplicate . (gh k l f' g') . join) . l . map g' $ x
 
+||| Distributive law for anamorphisms.
+distAna : Functor f => Identity (f a) -> f (Identity a)
+distAna = map Id . runIdentity
+
 ||| Distributive law for futumorphisms.
 distFutu : (Functor f) => Free f (f a) -> f (Free f a)
 distFutu (Pure fa) = Pure <$> fa
 distFutu (Bind as) = Bind <$> (distFutu <$> as)
 
-||| Futumorphism.
-futu : (Base a f, Corecursive f t, Functor f) => (a -> f (Free f a)) -> a -> t
+||| Futumorphism
+futu : (Base a f, Corecursive f t) => (a -> f (Free f a)) -> a -> t
 futu = gana distFutu
 
 ||| Distributive law for histomorphisms
@@ -78,6 +83,10 @@ distHisto = unfold g where
 ||| Histomorphism
 histo : (Base a f, Recursive f t) => (f (Cofree f a) -> a) -> t -> a
 histo = gcata distHisto
+
+||| Chronomorphism
+chrono : Functor f => (f (Cofree f b) -> b) -> (a -> f (Free f a)) -> a -> b
+chrono = ghylo distHisto distFutu
 
 ||| Catamorphism. Folds a structure. (see [here](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.41.125&rep=rep1&type=pdf))
 cata : (Recursive f t, Base a f) => (f a -> a) -> t -> a

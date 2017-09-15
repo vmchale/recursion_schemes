@@ -5,6 +5,7 @@
 -- --------------------------------------------------------------------- [ EOH ]
 module Data.Functor.Foldable.Instances
 
+import Control.Monad.Free
 import Data.Functor.Foldable
 
 %access public export
@@ -25,14 +26,15 @@ implementation Corecursive NatF Nat where
   embed ZeroF = Z
   embed (SuccF a) = S a
 
--- | Fix-point data type for exotic recursion schemes of various kinds
+||| Fix-point data type for exotic recursion schemes of various kinds
 data Fix : (Type -> Type) -> Type where
   Fx : f (Fix f) -> Fix f
 
-data Nu : (f : Type -> Type) -> Type -> Type where
+||| Nu fix-point functor for coinduction
+codata Nu : (f : Type -> Type) -> Type -> Type where
   NuF : ((a -> f a) -> a) -> b -> Nu f b
 
-{-data Mu : (f : Type -> Type) -> Type where
+{-data Mu :  (f : Type -> Type) -> Type where
   MuF : ({ a : _ } -> (f a -> a) -> a) -> Mu f-}
 
 implementation Functor (Nu f) where
@@ -75,3 +77,7 @@ implementation Recursive (ListF a) (List a) where
 implementation Corecursive (ListF a) (List a) where
   embed NilF = []
   embed (Cons x xs) = x::xs
+
+||| Futumorphism
+futu' : (Base a (ListF t), Corecursive (ListF t) t) => (a -> (ListF t) (Free (ListF t) a)) -> a -> t
+futu' = gana distFutu

@@ -7,7 +7,7 @@ on Edward Kmett's [Haskell
 library](https://hackage.haskell.org/package/recursion-schemes).
 
 It *should* be working now. You'll likely have to write some instances yourself.
-Let me know if you find any issues.
+Let me know if you find any bugs.
 
 ## Installation
 
