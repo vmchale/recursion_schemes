@@ -68,7 +68,7 @@
 (<span class="implicit boundvar" title="">a</span> ->
 <span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">a</span>) ->
 <span class="implicit boundvar" title="">a</span> ->
-<span class="implicit boundvar" title="">b</span></span></dt><dd><p>Hylomorphism. Equivalent to a catamorphism and an anamorphism taken together.</p>
+<span class="implicit boundvar" title="">b</span></span></dt><dd><p>Hylomorphism; equivalent to a catamorphism and an anamorphism taken together.</p>
 </dd><dt id="Data.Functor.Foldable.histo"><span class="name function" title="Data.Functor.Foldable.histo">histo</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Base" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Base">Base</a> <span class="implicit boundvar" title="">a</span>
 <span class="implicit boundvar" title="">f</span> =>
 <a class="type" title="Data.Functor.Foldable.Recursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Recursive">Recursive</a> <span class="implicit boundvar" title="">f</span>
@@ -81,9 +81,9 @@
 </dd><dt id="Data.Functor.Foldable.ghylo"><span class="name function" title="Data.Functor.Foldable.ghylo">ghylo</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Functor.Functor" href="Prelude.Functor.html#Prelude.Functor.Functor">Functor</a> <span class="implicit boundvar" title="">f</span> =>
 <a class="type" title="Control.Comonad.Comonad" href="Control.Comonad.html#Control.Comonad.Comonad">Comonad</a> <span class="implicit boundvar" title="">w</span> =>
 <a class="type" title="Prelude.Monad.Monad" href="Prelude.Monad.html#Prelude.Monad.Monad">Monad</a> <span class="implicit boundvar" title="">m</span> =>
-(<span class="documented boundvar" title="A distributive law">k</span> : <span class="implicit boundvar" title="">f</span> (<span class="implicit boundvar" title="">w</span> <span class="implicit boundvar" title="">b9</span>) ->
+(<span class="documented boundvar" title="A distributive law on f">k</span> : <span class="implicit boundvar" title="">f</span> (<span class="implicit boundvar" title="">w</span> <span class="implicit boundvar" title="">b9</span>) ->
 <span class="implicit boundvar" title="">w</span> (<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">b9</span>)) ->
-(<span class="documented boundvar" title="A distributive law">l</span> : <span class="implicit boundvar" title="">m</span> (<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">c</span>) ->
+(<span class="documented boundvar" title="A distributive law on l">l</span> : <span class="implicit boundvar" title="">m</span> (<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">c</span>) ->
 <span class="implicit boundvar" title="">f</span> (<span class="implicit boundvar" title="">m</span> <span class="implicit boundvar" title="">c</span>)) ->
 (<span class="documented boundvar" title="A (f . w)-algebra">f&#39;</span> : <span class="implicit boundvar" title="">f</span> (<span class="implicit boundvar" title="">w</span> <span class="implicit boundvar" title="">b</span>) ->
 <span class="implicit boundvar" title="">b</span>) ->
@@ -91,8 +91,8 @@
 <span class="implicit boundvar" title="">f</span> (<span class="implicit boundvar" title="">m</span> <span class="implicit boundvar" title="">a</span>)) ->
 <span class="implicit boundvar" title="">a</span> ->
 <span class="implicit boundvar" title="">b</span></span></dt><dd><p>Generalized hylomorphism</p>
-<dl><dt>k</dt><dd><p>A distributive law</p>
-</dd><dt>l</dt><dd><p>A distributive law</p>
+<dl><dt>k</dt><dd><p>A distributive law on f</p>
+</dd><dt>l</dt><dd><p>A distributive law on l</p>
 </dd><dt>f&#39;</dt><dd><p>A (f . w)-algebra</p>
 </dd><dt>g&#39;</dt><dd><p>A (f . m)-coalgebra</p>
 </dd></dl></dd><dt id="Data.Functor.Foldable.gcata"><span class="name function" title="Data.Functor.Foldable.gcata">gcata</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Recursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Recursive">Recursive</a> <span class="implicit boundvar" title="">f</span>
@@ -125,12 +125,11 @@
 <span class="implicit boundvar" title="">f</span> =>
 <a class="type" title="Data.Functor.Foldable.Corecursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Corecursive">Corecursive</a> <span class="implicit boundvar" title="">f</span>
 <span class="implicit boundvar" title="">t</span> =>
-<a class="type" title="Prelude.Functor.Functor" href="Prelude.Functor.html#Prelude.Functor.Functor">Functor</a> <span class="implicit boundvar" title="">f</span> =>
 (<span class="implicit boundvar" title="">a</span> ->
 <span class="implicit boundvar" title="">f</span> (<a class="type" title="Control.Monad.Free.Free" href="Control.Monad.Free.html#Control.Monad.Free.Free">Free</a> <span class="implicit boundvar" title="">f</span>
 <span class="implicit boundvar" title="">a</span>)) ->
 <span class="implicit boundvar" title="">a</span> ->
-<span class="implicit boundvar" title="">t</span></span></dt><dd><p>Futumorphism.</p>
+<span class="implicit boundvar" title="">t</span></span></dt><dd><p>Futumorphism</p>
 </dd><dt id="Data.Functor.Foldable.distHisto"><span class="name function" title="Data.Functor.Foldable.distHisto">distHisto</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Functor.Functor" href="Prelude.Functor.html#Prelude.Functor.Functor">Functor</a> <span class="implicit boundvar" title="">f</span> =>
 <span class="implicit boundvar" title="">f</span> (<a class="type" title="Data.Profunctor.Comonad.Cofree.Cofree" href="Data.Profunctor.Comonad.Cofree.html#Data.Profunctor.Comonad.Cofree.Cofree">Cofree</a> <span class="implicit boundvar" title="">f</span>
 <span class="implicit boundvar" title="">a</span>) ->
@@ -141,6 +140,9 @@
 (<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">a</span>) ->
 <span class="implicit boundvar" title="">f</span> (<a class="type" title="Control.Monad.Free.Free" href="Control.Monad.Free.html#Control.Monad.Free.Free">Free</a> <span class="implicit boundvar" title="">f</span>
 <span class="implicit boundvar" title="">a</span>)</span></dt><dd><p>Distributive law for futumorphisms.</p>
+</dd><dt id="Data.Functor.Foldable.distAna"><span class="name function" title="Data.Functor.Foldable.distAna">distAna</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Functor.Functor" href="Prelude.Functor.html#Prelude.Functor.Functor">Functor</a> <span class="implicit boundvar" title="">f</span> =>
+<a class="type" title="Control.Monad.Identity.Identity" href="Control.Monad.Identity.html#Control.Monad.Identity.Identity">Identity</a> (<span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">a</span>) ->
+<span class="implicit boundvar" title="">f</span> (<a class="type" title="Control.Monad.Identity.Identity" href="Control.Monad.Identity.html#Control.Monad.Identity.Identity">Identity</a> <span class="implicit boundvar" title="">a</span>)</span></dt><dd><p>Distributive law for anamorphisms.</p>
 </dd><dt id="Data.Functor.Foldable.dicata"><span class="name function" title="Data.Functor.Foldable.dicata">dicata</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Recursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Recursive">Recursive</a> <span class="implicit boundvar" title="">f</span>
 <span class="implicit boundvar" title="">b</span> =>
 <a class="type" title="Data.Functor.Foldable.Recursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Recursive">Recursive</a> <span class="implicit boundvar" title="">f</span>
@@ -156,6 +158,15 @@
 <span class="implicit boundvar" title="">a</span>) ->
 <span class="implicit boundvar" title="">b</span> ->
 <span class="implicit boundvar" title="">a</span></span></dt><dd><p>Catamorphism interweaving two data types.</p>
+</dd><dt id="Data.Functor.Foldable.chrono"><span class="name function" title="Data.Functor.Foldable.chrono">chrono</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Functor.Functor" href="Prelude.Functor.html#Prelude.Functor.Functor">Functor</a> <span class="implicit boundvar" title="">f</span> =>
+(<span class="implicit boundvar" title="">f</span> (<a class="type" title="Data.Profunctor.Comonad.Cofree.Cofree" href="Data.Profunctor.Comonad.Cofree.html#Data.Profunctor.Comonad.Cofree.Cofree">Cofree</a> <span class="implicit boundvar" title="">f</span>
+<span class="implicit boundvar" title="">b</span>) ->
+<span class="implicit boundvar" title="">b</span>) ->
+(<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">f</span> (<a class="type" title="Control.Monad.Free.Free" href="Control.Monad.Free.html#Control.Monad.Free.Free">Free</a> <span class="implicit boundvar" title="">f</span>
+<span class="implicit boundvar" title="">a</span>)) ->
+<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">b</span></span></dt><dd><p>Chronomorphism</p>
 </dd><dt id="Data.Functor.Foldable.cata"><span class="name function" title="Data.Functor.Foldable.cata">cata</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Recursive" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Recursive">Recursive</a> <span class="implicit boundvar" title="">f</span>
 <span class="implicit boundvar" title="">t</span> =>
 <a class="type" title="Data.Functor.Foldable.Base" href="Data.Functor.Foldable.html#Data.Functor.Foldable.Base">Base</a> <span class="implicit boundvar" title="">a</span>
