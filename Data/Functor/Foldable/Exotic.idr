@@ -14,19 +14,6 @@ import Data.Bifunctor
 interface Subtype b where
   switch : b -> b
 
--- Notes on indexed data types:
---     - An IDT is a trialgebra
--- for a synchromorphism, we need three data types:
---     1) A structure to traverse (IDT)
---     2) A "pocket" for intermediate results (IDT)
---     3) A stucture collecting results (ADT)
--- We addtionally need:
---     1) 
-
-{-synchro : BuiltAlgebra -> StructToBuilt -> Structure -> PocketToStruct -> StructToPocket -> PocketAlgebra
-synchro = ?hole-}
-
-
 ||| Gibbons' metamorphism. Tear down a structure, transform it, and then build up a new structure
 meta : (Functor f, Base b g, Base a f, Corecursive f t', Recursive g t) => (a -> f a) -> (b -> a) -> (g b -> b) -> t -> t'
 meta f e g = ana f . e . cata g
