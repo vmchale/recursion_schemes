@@ -16,5 +16,8 @@ install:
 - export PATH=$HOME/.cabal/bin:$PATH
 - cabal update
 - cabal install idris
+- git clone https://github.com/pheymann/specdris
+- cd specdris
+- idris --install specdris.ipkg
 script:
 - idris --testpkg test.pkg
