@@ -8,10 +8,6 @@ matrix:
         # Linux
         - env: TARGET=x86_64-unknown-linux-gnu
 
-        # OS X
-        - env: TARGET=x86_64-apple-darwin
-          os: osx
-
 install:
 - export PATH=$HOME/.cabal/bin:$PATH
 - cabal update
