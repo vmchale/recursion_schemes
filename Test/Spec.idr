@@ -12,6 +12,7 @@ projectNatural : Nat -> ListF Nat Nat
 projectNatural Z = NilF
 projectNatural (S n) = Cons (n + 1) n
 
+-- This is also an instructive use of cofree comonads!
 catalan : Nat -> Nat
 catalan = dyna coalgebra projectNatural
   where
