@@ -121,6 +121,9 @@ specSuite =
     describe "para" $
       it "should provide an elegant way to remove duplicates from a list when order doesn't matter" $
         dedup [1,1,2,3,4,5,4] `shouldBe` [1,2,3,5,4]
+    describe "dyna" $
+      it "should do something with catalan numbers" $
+        catalan 6 `shouldBe` 132
     describe "ana" $
       it "should give the first n naturals" $
         toN 5 `shouldBe` [1,2,3,4,5]
