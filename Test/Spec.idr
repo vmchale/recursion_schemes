@@ -8,14 +8,14 @@ import Data.Vect
 import Control.Monad.Free
 import Control.Comonad.Cofree
 
-projectNatural : Nat -> ListF Nat Nat
-projectNatural Z = NilF
-projectNatural (S n) = Cons (n + 1) n
+naturals : Nat -> ListF Nat Nat
+naturals Z = NilF
+naturals (S n) = Cons (n + 1) n
 
 -- This is also an instructive use of cofree comonads!
 -- Do note that it indexes starting at 0.
 catalan : Nat -> Nat
-catalan = dyna coalgebra projectNatural
+catalan = dyna coalgebra naturals
   where
     coalgebra : ListF Nat (Cofree (ListF Nat) Nat) -> Nat
     coalgebra NilF = 1
