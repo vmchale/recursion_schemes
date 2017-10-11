@@ -13,8 +13,9 @@ projectNatural Z = NilF
 projectNatural (S n) = Cons (n + 1) n
 
 -- This is also an instructive use of cofree comonads!
+-- Do note that it indexes starting at 0.
 catalan : Nat -> Nat
-catalan (S n) = dyna coalgebra projectNatural n
+catalan = dyna coalgebra projectNatural
   where
     coalgebra : ListF Nat (Cofree (ListF Nat) Nat) -> Nat
     coalgebra NilF = 1
@@ -124,7 +125,7 @@ specSuite =
         dedup [1,1,2,3,4,5,4] `shouldBe` [1,2,3,5,4]
     describe "dyna" $
       it "should do something with catalan numbers" $
-        catalan 7 `shouldBe` 132
+        catalan 6 `shouldBe` 132
     describe "ana" $
       it "should give the first n naturals" $
         toN 5 `shouldBe` [1,2,3,4,5]
