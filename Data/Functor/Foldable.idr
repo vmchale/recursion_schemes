@@ -62,6 +62,10 @@ ghylo k l f' g' = extract . (gh k l f' g') . pure where
   gh : (Functor f, Comonad w, Monad m) => (k : {d:_} -> f (w d) -> w (f d)) -> (l : {c:_} -> m (f c) -> f (m c)) -> (f' : f (w b) -> b) -> (g' : a -> f (m a)) -> m a -> w b
   gh k l f' g' x = map f' . k . map (duplicate . (gh k l f' g') . join) . l . map g' $ x
 
+||| Distributive law for catamorphisms
+distCata : Functor f => f (Identity a) -> Identity (f a)
+distCata = Id . map runIdentity
+
 ||| Distributive law for anamorphisms.
 distAna : Functor f => Identity (f a) -> f (Identity a)
 distAna = map Id . runIdentity

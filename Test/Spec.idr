@@ -6,6 +6,24 @@ import Data.Functor.Foldable.Instances
 import Data.Functor.Foldable.Exotic
 import Data.Vect
 import Control.Monad.Free
+import Control.Comonad.Cofree
+
+projectNatural : Nat -> ListF Nat Nat
+projectNatural Z = NilF
+projectNatural (S n) = Cons (n + 1) n
+
+catalan : Nat -> Nat
+catalan = dyna coalgebra projectNatural
+  where
+    coalgebra : ListF Nat (Cofree (ListF Nat) Nat) -> Nat
+    coalgebra NilF = 1
+    coalgebra (Cons n table) = sum (Prelude.List.zipWith (*) xs (reverse xs))
+      where
+        xs = take n table
+        take : Nat -> (Cofree (ListF Nat) Nat) -> List Nat
+        take Z _ = []
+        take (S n) (Co a NilF) = [a]
+        take (S n) (Co a (Cons v as)) = a :: take n as
 
 roundedSqrt : Nat -> Nat
 roundedSqrt = cast . cast {to=Integer} . sqrt . cast
