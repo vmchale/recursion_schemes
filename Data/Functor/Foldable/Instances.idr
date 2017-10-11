@@ -10,21 +10,15 @@ import Data.Functor.Foldable
 
 %access public export
 
-data NatF a = ZeroF | SuccF a
+implementation Base Nat Maybe where
 
-implementation Functor NatF where
-  map _ (ZeroF) = ZeroF
-  map g (SuccF a) = SuccF (g a)
+implementation Recursive Maybe Nat where
+  project Z = Nothing
+  project (S a) = Just a
 
-implementation Base Nat NatF where
-
-implementation Recursive NatF Nat where
-  project Z = ZeroF
-  project (S a) = SuccF a
-
-implementation Corecursive NatF Nat where
-  embed ZeroF = Z
-  embed (SuccF a) = S a
+implementation Corecursive Maybe Nat where
+  embed Nothing = Z
+  embed (Just a) = S a
 
 ||| Fix-point data type for exotic recursion schemes of various kinds
 data Fix : (Type -> Type) -> Type where

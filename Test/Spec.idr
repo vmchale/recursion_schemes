@@ -48,12 +48,12 @@ dedup = para pseudoalgebra where
 
 evenOdd : Nat -> Bool
 evenOdd = mutu odd even where
-  odd : NatF (Bool, Bool) -> Bool
-  odd ZeroF = False
-  odd (SuccF (_, b)) = b
-  even : NatF (Bool, Bool) -> Bool
-  even ZeroF = True
-  even (SuccF (_, b)) = b
+  odd : Maybe (Bool, Bool) -> Bool
+  odd Nothing = False
+  odd (Just (_, b)) = b
+  even : Maybe (Bool, Bool) -> Bool
+  even Nothing = True
+  even (Just (_, b)) = b
 
 collatzCoalgebra : Int -> Either (List Int) (ListF Int Int)
 collatzCoalgebra 1 = Left [1]
