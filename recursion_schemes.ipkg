@@ -10,7 +10,7 @@ pkgs = idris_free
      , comonad
      , bifunctors
 
-modules = Data.Functor.Foldable
+modules = Data.Functor.Foldable.Mod
         , Data.Functor.Foldable.Instances
         , Data.Functor.Foldable.Exotic
-        , Data.Functor.Foldable.Extra
+        , Data.Functor.Foldable

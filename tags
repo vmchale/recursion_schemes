@@ -1,0 +1,70 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+algebra	Test/Spec.idr	/^algebra : ListF (List a) (List (List a)) ->  List (List a)$/;"	f
+ana	Data/Functor/Foldable/Mod.idr	/^ana : (Corecursive f t, Base a f) => (a -> f a) -> a -> t$/;"	f
+cata	Data/Functor/Foldable/Mod.idr	/^cata : (Recursive f t, Base a f) => (f a -> a) -> t -> a$/;"	f
+cataConcat	Test/Spec.idr	/^cataConcat : List (List a) -> List a$/;"	f
+catalan	Test/Spec.idr	/^catalan : Nat -> Nat$/;"	f
+chema	Data/Functor/Foldable/Exotic.idr	/^chema : (Corecursive f1 t1, Base a1 f1, Corecursive f2 t2, Corecursive f1 a1, CoSubHom f1 f2 a1 a2, Base a2 f2, Subtype a2) => (a1 -> f1 a1) -> (a2 -> f2 a2) -> a2 -> t2$/;"	f
+chrono	Data/Functor/Foldable/Mod.idr	/^chrono : Functor f => (f (Cofree f b) -> b) -> (a -> f (Free f a)) -> a -> b$/;"	f
+coalgebra	Test/Spec.idr	/^    coalgebra : ListF Nat (Cofree (ListF Nat) Nat) -> Nat$/;"	f
+coalgebra	Test/Spec.idr	/^coalgebra : List a -> ListF (List a) (List a)$/;"	f
+coelgot	Data/Functor/Foldable/Exotic.idr	/^coelgot : Functor f => ((a, f b) -> b) -> (a -> f a) -> a -> b$/;"	f
+colambek	Data/Functor/Foldable/Instances.idr	/^colambek : (Recursive f t, Corecursive f t, Base (f t) f) => (f t -> t)$/;"	f
+collatz	Test/Spec.idr	/^collatz : Int -> List Int$/;"	f
+collatzCoalgebra	Test/Spec.idr	/^collatzCoalgebra : Int -> Either (List Int) (ListF Int Int)$/;"	f
+conditionalParamorphism	Data/Functor/Foldable/Extra.idr	/^conditionalParamorphism : (a -> a -> Bool) -> List a -> List (List a)$/;"	f
+dedup	Test/Spec.idr	/^dedup : (Eq a) => List a -> List a$/;"	f
+dendro	Data/Functor/Foldable/Exotic.idr	/^dendro : (Recursive f1 t1, Base a1 f1, Recursive f2 t2, Recursive f1 a1, SubHom f1 f2 a1 a2, Base a2 f2, Subtype a2) => (f1 a1 -> a1) -> (f2 a2 -> a2) -> t2 -> a2$/;"	f
+dicata	Data/Functor/Foldable/Mod.idr	/^dicata : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a$/;"	f
+distAna	Data/Functor/Foldable/Mod.idr	/^distAna : Functor f => Identity (f a) -> f (Identity a)$/;"	f
+distCata	Data/Functor/Foldable/Mod.idr	/^distCata : Functor f => f (Identity a) -> Identity (f a)$/;"	f
+distFutu	Data/Functor/Foldable/Mod.idr	/^distFutu : (Functor f) => Free f (f a) -> f (Free f a)$/;"	f
+distHisto	Data/Functor/Foldable/Mod.idr	/^distHisto : (Functor f) => f (Cofree f a) -> Cofree f (f a)$/;"	f
+dyna	Data/Functor/Foldable/Exotic.idr	/^dyna : (Functor f) => (f (Cofree f a) -> a) -> (b -> f b) -> b -> a$/;"	f
+dynaPro	Data/Functor/Foldable/Exotic.idr	/^dynaPro : (Functor f, Functor g) => (f (Cofree f a) -> a) -> ({c:_} -> g c -> f c) -> (b -> g b) -> b -> a$/;"	f
+elgot	Data/Functor/Foldable/Exotic.idr	/^elgot : Functor f => (f a -> a) -> (b -> Either a (f b)) -> b -> a$/;"	f
+elgotCoalgebra	Test/Spec.idr	/^elgotCoalgebra : List a -> Either (List (List a)) (ListF (List a) (List a))$/;"	f
+embed	Data/Functor/Foldable/Mod.idr	/^  embed : f t -> t$/;"	f
+even	Test/Spec.idr	/^  even : Maybe (Bool, Bool) -> Bool$/;"	f
+evenOdd	Test/Spec.idr	/^evenOdd : Nat -> Bool$/;"	f
+fix	Data/Functor/Foldable/Instances.idr	/^fix : f (Fix f) -> Fix f$/;"	f
+futu	Data/Functor/Foldable/Mod.idr	/^futu : (Base a f, Corecursive f t) => (a -> f (Free f a)) -> a -> t$/;"	f
+gana	Data/Functor/Foldable/Mod.idr	/^gana : (Corecursive f t, Base a f, Monad m) => (k : {b : _} -> m (f b) -> f (m b)) -> (g : a -> f (m a)) -> a -> t$/;"	f
+gcata	Data/Functor/Foldable/Mod.idr	/^gcata : (Recursive f t, Base a f, Comonad w) => (k : {b:_} -> f (w b) -> w (f b)) -> (g : f (w a) -> a) -> t -> a$/;"	f
+gh	Data/Functor/Foldable/Mod.idr	/^  gh : (Functor f, Comonad w, Monad m) => (k : {d:_} -> f (w d) -> w (f d)) -> (l : {c:_} -> m (f c) -> f (m c)) -> (f' : f (w b) -> b) -> (g' : a -> f (m a)) -> m a -> w b$/;"	f
+ghylo	Data/Functor/Foldable/Mod.idr	/^ghylo : (Functor f, Comonad w, Monad m) => $/;"	c
+histo	Data/Functor/Foldable/Mod.idr	/^histo : (Base a f, Recursive f t) => (f (Cofree f a) -> a) -> t -> a$/;"	f
+hylo	Data/Functor/Foldable/Mod.idr	/^hylo : Functor f => (f b -> b) -> (a -> f a) -> a -> b$/;"	f
+hyloPro	Data/Functor/Foldable/Exotic.idr	/^hyloPro : (Functor f, Functor g) => (f a -> a) -> ({c:_} -> g c -> f c) -> (b -> g b) -> b -> a$/;"	f
+isPrime	Test/Spec.idr	/^isPrime : Nat -> List Nat -> Bool$/;"	f
+lambek	Data/Functor/Foldable/Instances.idr	/^lambek : (Recursive f t, Corecursive f t, Base (f t) f) => (t -> f t)$/;"	f
+mcata	Data/Functor/Foldable/Exotic.idr	/^mcata : ({y : _} -> ((y -> c) -> f y -> c)) -> Fix f -> c$/;"	f
+meta	Data/Functor/Foldable/Exotic.idr	/^meta : (Functor f, Base b g, Base a f, Corecursive f t', Recursive g t) => (a -> f a) -> (b -> a) -> (g b -> b) -> t -> t'$/;"	f
+mhisto	Data/Functor/Foldable/Exotic.idr	/^mhisto : ({y : _} -> ((y -> c) -> (y -> f y) -> f y -> c)) -> Fix f -> c$/;"	f
+micro	Data/Functor/Foldable/Exotic.idr	/^micro : (Functor f, Corecursive f a) => (b -> Either a (f b)) -> b -> a$/;"	f
+mutu	Data/Functor/Foldable/Mod.idr	/^mutu : (Recursive f t, Base t f) => (f (a, a) -> a) -> (f (a, a) -> a) -> t -> a$/;"	f
+naturals	Test/Spec.idr	/^naturals : Nat -> ListF Nat Nat$/;"	f
+odd	Test/Spec.idr	/^  odd : Maybe (Bool, Bool) -> Bool$/;"	f
+para	Data/Functor/Foldable/Mod.idr	/^para : (Recursive f t, Corecursive f t, Base (t, a) f) => (f (t, a) -> a) -> t -> a$/;"	f
+phi	Data/Functor/Foldable/Exotic.idr	/^  phi : (Recursive f t1) => (f t1 -> t1) -> (g t2 -> t2) -> (g t2 -> t2)$/;"	f
+plusMinus	Test/Spec.idr	/^plusMinus : List Int -> Int$/;"	f
+postpro	Data/Functor/Foldable/Mod.idr	/^postpro : (Recursive f t, Corecursive f t, Base t f) => (f t -> f t) -> (a -> f a) -> a -> t$/;"	f
+prepro	Data/Functor/Foldable/Mod.idr	/^prepro : (Recursive f t, Corecursive f t, Base a f) => (f t -> f t) -> (f a -> a) -> t -> a$/;"	f
+project	Data/Functor/Foldable/Mod.idr	/^  project : t -> f t$/;"	f
+pseudoalgebra	Test/Spec.idr	/^  pseudoalgebra : (Eq a) => ListF a (List a, List a) -> List a$/;"	f
+psi	Data/Functor/Foldable/Exotic.idr	/^  psi : (Corecursive f t1) => (t1 -> f t1) -> (t2 -> g t2) -> (t2 -> g t2)$/;"	f
+roundedSqrt	Test/Spec.idr	/^roundedSqrt : Nat -> Nat$/;"	f
+specSuite	Test/Spec.idr	/^specSuite : IO ()$/;"	c
+suffix	Test/Spec.idr	/^suffix : List a -> List (List a)$/;"	f
+switch	Data/Functor/Foldable/Exotic.idr	/^  switch : b -> b$/;"	f
+take	Test/Spec.idr	/^        take : Nat -> (Cofree (ListF Nat) Nat) -> List Nat$/;"	f
+toN	Test/Spec.idr	/^toN : Nat -> List Nat$/;"	f
+unfix	Data/Functor/Foldable/Instances.idr	/^unfix : Fix f -> f (Fix f)$/;"	f
+zygo	Data/Functor/Foldable/Mod.idr	/^zygo : (Recursive f t, Base t f, Base (b, a) f) => (f b -> b) -> (f (b, a) -> a) -> t -> a$/;"	f
+zygoAlgebra	Test/Spec.idr	/^zygoAlgebra : ListF Int Bool -> Bool$/;"	f
+zygoPseudoalgebra	Test/Spec.idr	/^zygoPseudoalgebra : ListF Int (Bool, Int) -> Int$/;"	f

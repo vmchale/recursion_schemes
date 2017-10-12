@@ -1,6 +1,6 @@
 module Data.Functor.Foldable.Extra
 
-import Data.Functor.Foldable
+import Data.Functor.Foldable.Mod
 import Data.Functor.Foldable.Instances
 
 %access public export

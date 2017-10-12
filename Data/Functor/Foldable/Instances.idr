@@ -6,7 +6,7 @@
 module Data.Functor.Foldable.Instances
 
 import Control.Monad.Free
-import Data.Functor.Foldable
+import Data.Functor.Foldable.Mod
 
 %access public export
 

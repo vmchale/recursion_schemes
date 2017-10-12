@@ -2,15 +2,14 @@ module Test.Spec
 
 import Specdris.Spec
 import Data.Functor.Foldable
-import Data.Functor.Foldable.Instances
-import Data.Functor.Foldable.Exotic
 import Data.Vect
-import Control.Monad.Free
 import Control.Comonad.Cofree
 
 naturals : Nat -> ListF Nat Nat
 naturals Z = NilF
 naturals (S n) = Cons (n + 1) n
+
+-- TODO have a "wrapped n" monad? then `take n` is type-safer
 
 -- This is also an instructive use of cofree comonads!
 -- Do note that it indexes starting at 0.
@@ -30,12 +29,8 @@ catalan = dyna coalgebra naturals
 roundedSqrt : Nat -> Nat
 roundedSqrt = cast . cast {to=Integer} . sqrt . cast
 
-numCoalgebra : Nat -> (ListF Nat Nat)
-numCoalgebra Z = NilF
-numCoalgebra (S n) = (Cons (S n) n)
-
 toN : Nat -> List Nat
-toN = reverse . ana numCoalgebra
+toN = reverse . ana naturals
 
 isPrime : Nat -> List Nat -> Bool
 isPrime n ns = all (\a => mod n a /= 0) (filter (<= (roundedSqrt n)) ns)

@@ -4,7 +4,7 @@ import Control.Arrow
 import Control.Monad.Identity
 import Control.Comonad
 import Control.Comonad.Cofree
-import Data.Functor.Foldable
+import Data.Functor.Foldable.Mod
 import Data.Functor.Foldable.Instances
 import Data.Composition
 import Data.Bifunctor
