@@ -9,6 +9,8 @@ pkgs = specdris
      , comonad
      , bifunctors
 
+opts = "--warnreach"
+
 modules = Data.Functor.Foldable
         , Data.Functor.Foldable.Instances
         , Data.Functor.Foldable.Exotic

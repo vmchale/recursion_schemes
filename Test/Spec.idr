@@ -5,6 +5,13 @@ import Data.Functor.Foldable
 import Data.Vect
 import Control.Comonad.Cofree
 
+-- FIXME morphisms with constraints? particularly re: symmteries
+-- "safe" compilation using this?
+-- particularly discrete pseudo-hamiltonian dynamics
+-- oh man finite symplectic geometry
+
+-- TODO computation of pi from http://www.cs.ox.ac.uk/jeremy.gibbons/publications/metamorphisms-mpc.pdf
+
 naturals : Nat -> ListF Nat Nat
 naturals Z = NilF
 naturals (S n) = Cons (n + 1) n
@@ -66,6 +73,8 @@ elgotCoalgebra : List a -> Either (List (List a)) (ListF (List a) (List a))
 elgotCoalgebra [] = Right NilF
 elgotCoalgebra (x :: []) = Left ([[x]])
 elgotCoalgebra (x :: xs) = Right (Cons (x :: xs) xs) 
+
+-- fibonacci zygomorphism?
 
 zygoPseudoalgebra : ListF Int (Bool, Int) -> Int
 zygoPseudoalgebra NilF = 0
