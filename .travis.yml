@@ -30,7 +30,7 @@ before_install:
       curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
     fi
   - chmod a+x ~/.local/bin/stack
-  - stack install idris --resolver nightly --install-ghc
+  - travis_wait stack install idris --resolver nightly --install-ghc
   - git clone https://github.com/pheymann/specdris
   - cd specdris/
   - idris --install specdris.ipkg
