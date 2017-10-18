@@ -6,7 +6,7 @@ import Control.Monad.Free
 import Control.Comonad
 import Control.Comonad.Cofree
 
--- TODO is it at all possible to guarantee termination via classes or something?
+-- TODO when is it possible to guarantee termination?
 
 %access public export
 
@@ -80,6 +80,8 @@ distFutu (Bind as) = Bind <$> (distFutu <$> as)
 ||| Futumorphism
 futu : (Base a f, Corecursive f t) => (a -> f (Free f a)) -> a -> t
 futu = gana distFutu
+
+-- TODO make docs more sophisticated.
 
 ||| Distributive law for histomorphisms
 distHisto : (Functor f) => f (Cofree f a) -> Cofree f (f a)
