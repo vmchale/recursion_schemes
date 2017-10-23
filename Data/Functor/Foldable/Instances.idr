@@ -50,11 +50,19 @@ data ListF : Type -> Type -> Type where
   NilF : ListF _ _
   Cons : a -> b -> ListF a b
 
+data StreamF : Type -> Type -> Type where
+  Pipe : a -> b -> StreamF a b
+
+implementation Functor (StreamF a) where
+  map f (Pipe a b) = Pipe a (f b)
+
 implementation Functor (ListF a) where
   map _ NilF       = NilF
   map f (Cons a b) = Cons a (f b)
 
 implementation Base b (ListF a) where
+
+implementation Base b (StreamF a) where
 
 ||| Lambek's lemma assures us this function always exists.
 lambek : (Recursive f t, Corecursive f t, Base (f t) f) => (t -> f t)
@@ -64,6 +72,12 @@ lambek = cata (map embed)
 colambek : (Recursive f t, Corecursive f t, Base (f t) f) => (f t -> t)
 colambek = ana (map project)
 
+implementation Recursive (StreamF a) (Stream a) where
+  project (x::xs) = Pipe x xs
+
+implementation Corecursive (StreamF a) (Stream a) where
+  embed (Pipe x xs) = x::xs
+
 implementation Recursive (ListF a) (List a) where
   project [] = NilF
   project (x::xs) = Cons x xs
@@ -71,7 +85,3 @@ implementation Recursive (ListF a) (List a) where
 implementation Corecursive (ListF a) (List a) where
   embed NilF = []
   embed (Cons x xs) = x::xs
-
-||| Futumorphism
-futu' : (Base a (ListF t), Corecursive (ListF t) t) => (a -> (ListF t) (Free (ListF t) a)) -> a -> t
-futu' = gana distFutu

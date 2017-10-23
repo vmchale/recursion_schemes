@@ -1,3 +1,13 @@
+clean:
+    sn c .
+    rm -f tags
+
+build:
+    idris --build recursion_schemes.ipkg
+
+test:
+    idris --testpkg test.ipkg
+
 update-docs:
     sn c .
     rm -rf docs
