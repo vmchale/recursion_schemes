@@ -1,67 +1,29 @@
 ---
-
 sudo: false
 language: default
 cache:
   directories:
-    - $HOME/.stack
+    - $HOME/.cabal
+    - $HOME/.ghc
 addons:
   apt:
+    sources:
+    - hvr-ghc
     packages:
-      - libgmp3-dev
-matrix:
-  include:
-
-    # Linux
-    - env: TARGET=x86_64-unkown-linux-gnu
-
-    # OS X
-    - env: TARGET=x86_64-apple-darwin
-      os: osx
+    - libgmp3-dev
+    - ghc-8.2.1
+    - cabal-install-head
 
 before_install:
-  - mkdir -p ~/.local/bin
-  - export PATH=$HOME/.local/bin:$PATH
-  - |
-    if [ `uname` = "Darwin" ]
-    then
-      curl --insecure -L https://www.stackage.org/stack/osx-x86_64 | tar xz --strip-components=1 --include '*/stack' -C ~/.local/bin
-    else
-      curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
-    fi
-  - chmod a+x ~/.local/bin/stack
-  - travis_wait stack install idris --resolver nightly --install-ghc
-  - git clone https://github.com/pheymann/specdris
-  - cd specdris/
-  - idris --install specdris.ipkg
+- export PATH=$HOME/.cabal/bin:$PATH
+- cabal update
+- travis_wait cabal install idris
+- git clone https://github.com/pheymann/specdris
+- cd specdris/
+- idris --install specdris.ipkg
 
 install:
-  - idris --build recursion_schemes.ipkg
+- idris --build recursion_schemes.ipkg
 
 script:
-  - idris --testpkg test.ipkg
-
-    # TODO push docs
-
-  #language: haskell
-  #sudo: false
-  #ghc: 8.0.2
-
-  #matrix:
-  #include:
-
-    # Linux
-    #- env: TARGET=x86_64-unknown-linux-gnu
-
-    #install:
-    #- export PATH=$HOME/.cabal/bin:$PATH
-    #- cabal update
-    #- cabal install cabal-install
-    #- cabal install idris --dependencies-only
-    #- travis_wait cabal install idris -j1
-    #- git clone https://github.com/pheymann/specdris
-    #- cd specdris
-    #- ls ~/.cabal/share/x86_64-linux-ghc-8.2.1/idris-1.1.1/libs/
-    #- idris --install specdris.ipkg
-    #script:
-    #- idris --testpkg test.pkg
+- idris --testpkg test.ipkg
