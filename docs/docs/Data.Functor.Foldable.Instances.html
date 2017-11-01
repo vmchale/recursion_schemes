@@ -9,16 +9,6 @@
 <span class="implicit boundvar" title="">f</span> =>
 <span class="implicit boundvar" title="">t</span> ->
 <span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">t</span></span></dt><dd><p>Lambek's lemma assures us this function always exists.</p>
-</dd><dt id="Data.Functor.Foldable.Instances.futu&#39;"><span class="name function" title="Data.Functor.Foldable.Instances.futu&#39;">futu&#39;</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Mod.Base" href="Data.Functor.Foldable.Mod.html#Data.Functor.Foldable.Mod.Base">Base</a> <span class="implicit boundvar" title="">a</span>
-(<a class="type" title="Data.Functor.Foldable.Instances.ListF" href="Data.Functor.Foldable.Instances.html#Data.Functor.Foldable.Instances.ListF">ListF</a> <span class="implicit boundvar" title="">t</span>) =>
-<a class="type" title="Data.Functor.Foldable.Mod.Corecursive" href="Data.Functor.Foldable.Mod.html#Data.Functor.Foldable.Mod.Corecursive">Corecursive</a> (<a class="type" title="Data.Functor.Foldable.Instances.ListF" href="Data.Functor.Foldable.Instances.html#Data.Functor.Foldable.Instances.ListF">ListF</a> <span class="implicit boundvar" title="">t</span>)
-<span class="implicit boundvar" title="">t</span> =>
-(<span class="implicit boundvar" title="">a</span> ->
-<a class="type" title="Data.Functor.Foldable.Instances.ListF" href="Data.Functor.Foldable.Instances.html#Data.Functor.Foldable.Instances.ListF">ListF</a> <span class="implicit boundvar" title="">t</span>
-(<a class="type" title="Control.Monad.Free.Free" href="Control.Monad.Free.html#Control.Monad.Free.Free">Free</a> (<a class="type" title="Data.Functor.Foldable.Instances.ListF" href="Data.Functor.Foldable.Instances.html#Data.Functor.Foldable.Instances.ListF">ListF</a> <span class="implicit boundvar" title="">t</span>)
-<span class="implicit boundvar" title="">a</span>)) ->
-<span class="implicit boundvar" title="">a</span> ->
-<span class="implicit boundvar" title="">t</span></span></dt><dd><p>Futumorphism</p>
 </dd><dt id="Data.Functor.Foldable.Instances.fix"><span class="name function" title="Data.Functor.Foldable.Instances.fix">fix</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><span class="implicit boundvar" title="">f</span> (<a class="type" title="Data.Functor.Foldable.Instances.Fix" href="Data.Functor.Foldable.Instances.html#Data.Functor.Foldable.Instances.Fix">Fix</a> <span class="implicit boundvar" title="">f</span>) ->
 <a class="type" title="Data.Functor.Foldable.Instances.Fix" href="Data.Functor.Foldable.Instances.html#Data.Functor.Foldable.Instances.Fix">Fix</a> <span class="implicit boundvar" title="">f</span></span></dt><dd><p>Create a fix-point with a functor</p>
 </dd><dt id="Data.Functor.Foldable.Instances.colambek"><span class="name function" title="Data.Functor.Foldable.Instances.colambek">colambek</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Functor.Foldable.Mod.Recursive" href="Data.Functor.Foldable.Mod.html#Data.Functor.Foldable.Mod.Recursive">Recursive</a> <span class="implicit boundvar" title="">f</span>
@@ -29,7 +19,12 @@
 <span class="implicit boundvar" title="">f</span> =>
 <span class="implicit boundvar" title="">f</span> <span class="implicit boundvar" title="">t</span> ->
 <span class="implicit boundvar" title="">t</span></span></dt><dd><p>The dual of Lambek's lemma.</p>
-</dd><dt id="Data.Functor.Foldable.Instances.Nu"><span class="word">data&nbsp;</span><span class="name type" title="Data.Functor.Foldable.Instances.Nu">Nu</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="boundvar" title="">f</span> : <span class="type" title="Type">Type</span> ->
+</dd><dt id="Data.Functor.Foldable.Instances.StreamF"><span class="word">data&nbsp;</span><span class="name type" title="Data.Functor.Foldable.Instances.StreamF">StreamF</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><span class="type" title="Type">Type</span> ->
+<span class="type" title="Type">Type</span> ->
+<span class="type" title="Type">Type</span></span></dt><dd><dl class="decls"><dt id="Data.Functor.Foldable.Instances.Pipe"><span class="name constructor" title="Data.Functor.Foldable.Instances.Pipe">Pipe</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">b</span> ->
+<a class="type" title="Data.Functor.Foldable.Instances.StreamF" href="Data.Functor.Foldable.Instances.html#Data.Functor.Foldable.Instances.StreamF">StreamF</a> <span class="implicit boundvar" title="">a</span>
+<span class="implicit boundvar" title="">b</span></span></dt><dd></dd></dl></dd><dt id="Data.Functor.Foldable.Instances.Nu"><span class="word">data&nbsp;</span><span class="name type" title="Data.Functor.Foldable.Instances.Nu">Nu</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="boundvar" title="">f</span> : <span class="type" title="Type">Type</span> ->
 <span class="type" title="Type">Type</span>) ->
 <span class="type" title="Type">Type</span> ->
 <span class="type" title="Type">Type</span></span></dt><dd><p>Nu fix-point functor for coinduction</p>
