@@ -3,8 +3,8 @@ sudo: false
 language: default
 cache:
   directories:
-    - $HOME/.cabal
-    - $HOME/.ghc
+  - $HOME/.cabal
+  - $HOME/.ghc
 addons:
   apt:
     sources:
