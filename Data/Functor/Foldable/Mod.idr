@@ -6,8 +6,6 @@ import Control.Monad.Free
 import Control.Comonad
 import Control.Comonad.Cofree
 
--- TODO when is it possible to guarantee termination?
-
 %access public export
 
 ||| This is an interface which does nothing interesting, but it functions as a
