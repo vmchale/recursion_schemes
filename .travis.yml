@@ -15,6 +15,7 @@ addons:
     - cabal-install-head
 
 before_install:
+- export PATH=/opt/ghc/$GHCVER/bin:$PATH
 - export PATH=$HOME/.cabal/bin:$PATH
 - cabal update
 - travis_wait cabal install idris
