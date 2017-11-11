@@ -28,8 +28,9 @@ data Fix : (Type -> Type) -> Type where
 codata Nu : (f : Type -> Type) -> Type -> Type where
   NuF : ((a -> f a) -> a) -> b -> Nu f b
 
-{-data Mu :  (f : Type -> Type) -> Type where
-  MuF : ({ a : _ } -> (f a -> a) -> a) -> Mu f-}
+||| Mu fix-point functor for induction
+data Mu : (Type -> Type) -> Type where
+  MuF : ({a : Type} -> (a -> f a) -> a) -> Mu f
 
 implementation Functor (Nu f) where
   map g (NuF h a) = NuF h (g a)

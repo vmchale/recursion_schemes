@@ -16,8 +16,6 @@ naturals : Nat -> ListF Nat Nat
 naturals Z = NilF
 naturals (S n) = Cons (n + 1) n
 
--- TODO have a "wrapped n" monad? then `take n` is type-safer
-
 -- This is also an instructive use of cofree comonads!
 -- Do note that it indexes starting at 0.
 catalan : Nat -> Nat

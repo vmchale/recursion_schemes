@@ -14,7 +14,6 @@ opts = "--warnreach"
 modules = Data.Functor.Foldable
         , Data.Functor.Foldable.Instances
         , Data.Functor.Foldable.Exotic
-        , Data.Functor.Foldable.Extra
         , Data.Functor.Foldable.Mod
         , Test.Spec
 

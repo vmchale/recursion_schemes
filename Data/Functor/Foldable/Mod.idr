@@ -79,8 +79,6 @@ distFutu (Bind as) = Bind <$> (distFutu <$> as)
 futu : (Base a f, Corecursive f t) => (a -> f (Free f a)) -> a -> t
 futu = gana distFutu
 
--- TODO make docs more sophisticated.
-
 ||| Distributive law for histomorphisms
 distHisto : (Functor f) => f (Cofree f a) -> Cofree f (f a)
 distHisto = unfold g where
