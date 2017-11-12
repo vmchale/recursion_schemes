@@ -7,7 +7,7 @@ pkgs = idris_free
      , composition
      , comonad
      , bifunctors
-     -- , hezarfen
+     , hezarfen
 
 modules = Data.Functor.Foldable.Mod
         , Data.Functor.Foldable.Instances
