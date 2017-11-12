@@ -3,12 +3,11 @@ package recursion_schemes
 sourceloc  = git://git@github.com:vmchale/recursion_schemes.git
 bugtracker = http://www.github.com/vmchale/recursion_schemes/issues
 
-opts = "--warnreach"
-
 pkgs = idris_free
      , composition
      , comonad
      , bifunctors
+     -- , hezarfen
 
 modules = Data.Functor.Foldable.Mod
         , Data.Functor.Foldable.Instances
