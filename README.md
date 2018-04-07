@@ -6,9 +6,6 @@ This is a library providing recursion schemes for Idris. It it is loosely based
 on Edward Kmett's [Haskell
 library](https://hackage.haskell.org/package/recursion-schemes).
 
-It *should* be working now. You'll likely have to write some instances yourself.
-Let me know if you find any bugs.
-
 ## Installation
 
 First, install [idris-free](https://github.com/idris-hackers/idris-free),
