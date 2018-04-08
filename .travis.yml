@@ -24,8 +24,5 @@ before_install:
 - cd specdris/
 - idris --install specdris.ipkg
 
-install:
-- idris --build recursion_schemes.ipkg
-
 script:
 - idris --testpkg test.ipkg
