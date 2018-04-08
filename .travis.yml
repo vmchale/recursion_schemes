@@ -25,4 +25,5 @@ install:
 - idris --install specdris.ipkg
 
 script:
+- cd ../
 - idris --testpkg test.ipkg
