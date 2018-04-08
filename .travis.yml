@@ -19,7 +19,7 @@ before_install:
 - export PATH=$HOME/.cabal/bin:$PATH
 - cabal update
 - cabal install idris --dependencies-only
-- travis_wait cabal new-install idris
+- travis_wait 30 cabal new-install idris
 - git clone https://github.com/pheymann/specdris
 - cd specdris/
 - idris --install specdris.ipkg
