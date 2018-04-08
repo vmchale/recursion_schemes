@@ -23,11 +23,9 @@ before_install:
 - git clone https://github.com/pheymann/specdris
 - cd specdris/
 - idris --install specdris.ipkg
-- yamllint
 
 install:
 - idris --build recursion_schemes.ipkg
 
 script:
-- yamllint .travis.yml
 - idris --testpkg test.ipkg
