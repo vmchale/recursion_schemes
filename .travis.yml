@@ -11,7 +11,7 @@ addons:
     - hvr-ghc
     packages:
     - libgmp3-dev
-    - ghc-8.2.2
+    - ghc-8.2.1
     - cabal-install-head
 
 install:
