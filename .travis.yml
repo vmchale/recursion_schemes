@@ -18,7 +18,7 @@ before_install:
 - export PATH=/opt/ghc/$GHCVER/bin:$PATH
 - export PATH=$HOME/.cabal/bin:$PATH
 - cabal update
-- cabal install idris --dependencies-only
+- cabal new-install idris --dependencies-only
 - travis_wait 30 cabal new-install idris
 - git clone https://github.com/pheymann/specdris
 - cd specdris/
