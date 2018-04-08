@@ -14,7 +14,7 @@ addons:
     - ghc-8.2.1
     - cabal-install-head
 
-before_install:
+install:
 - export PATH=/opt/ghc/$GHCVER/bin:$PATH
 - export PATH=$HOME/.cabal/bin:$PATH
 - cabal update
