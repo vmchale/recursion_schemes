@@ -15,6 +15,7 @@ addons:
     - cabal-install-head
 
 install:
+- rm -rf $HOME/.cabal
 - export PATH=/opt/ghc/$GHCVER/bin:$PATH
 - export PATH=$HOME/.cabal/bin:$PATH
 - cabal update
