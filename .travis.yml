@@ -22,10 +22,13 @@ install:
 - travis_wait 40 cabal new-install idris
 - git clone https://github.com/pheymann/specdris
 - git clone https://github.com/vmchale/comonad
+- git clone https://github.com/idris-hackers/idris-free.git
 - cd specdris/
 - idris --install specdris.ipkg
 - cd ../comonad/
 - idris --install comonad.ipkg
+- cd ../idris-free
+- idris --install idris-free.ipkg
 
 script:
 - cd ../
