@@ -1,0 +1,27 @@
+[package]
+name = "vmchale/recursion_schemes"
+version = "0.1.0"
+authors = ["Vanessa McHale <vanessa.mchale@iohk.io>"]
+description = "A recursion schemes library for Idris"
+license = "BSD3"
+
+[dependencies]
+"vmchale/comonad" = { git = "http://github.com/vmchale/comonad" }
+"idris-hackers/free" = { git = "https://github.com/vmchale/idris-free" }
+
+[dev_dependencies]
+"git/specdris" = { git = "https://github.com/vmchale/specdris" }
+
+[targets.lib]
+path = "."
+mods = [ "Data.Functor.Foldable"
+       , "Data.Functor.Foldable.Exotic"
+       , "Data.Functor.Foldable.Instances"
+       , "Data.Functor.Foldable.Mod"
+       ]
+idris_opts = ["--warnreach"]
+
+[[targets.test]]
+name = "recursion_schemes-test"
+main = "Test/Spec.idr"
+idris_opts = ["--warnreach"]
