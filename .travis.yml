@@ -11,7 +11,7 @@ addons:
     - hvr-ghc
     packages:
     - libgmp3-dev
-    - ghc-8.2.1
+    - ghc-8.4.3
     - cabal-install-head
 
 install:
@@ -19,6 +19,7 @@ install:
 - export PATH=/opt/ghc/$GHCVER/bin:$PATH
 - export PATH=$HOME/.cabal/bin:$PATH
 - cabal update
+- mkdir -p $HOME/.cabal/store/ghc-8.4.3/package.db
 - travis_wait 40 cabal new-install idris
 - git clone https://github.com/pheymann/specdris
 - git clone https://github.com/vmchale/comonad
