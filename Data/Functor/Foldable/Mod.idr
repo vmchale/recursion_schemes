@@ -27,7 +27,7 @@ ana g = a'
   where a' x = embed . map a' . g $ x
 
 ||| Postpromorphism. Unfold a structure, applying a natural transformation along the way.
-postpro : (Recursive f t, Corecursive f t, Base t f) => (f t -> f t) -> (a -> f a) -> a -> t
+postpro : (Recursive f t, Corecursive f t) => (f t -> f t) -> (a -> f a) -> a -> t
 postpro e g = a'
   where a' x = embed . map (ana (e . project) . a') . g $ x
 
@@ -98,7 +98,7 @@ cata f = c
   where c x = f . map c . project $ x
 
 ||| Prepromorphism. Fold a structure while applying a natural transformation at each step.
-prepro : (Recursive f t, Corecursive f t, Base a f) => (f t -> f t) -> (f a -> a) -> t -> a
+prepro : (Recursive f t, Corecursive f t) => (f t -> f t) -> (f a -> a) -> t -> a
 prepro e f = c 
   where c x = f . map (c . (cata (embed . e))) . project $ x
 
