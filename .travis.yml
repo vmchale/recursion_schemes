@@ -12,7 +12,7 @@ addons:
     packages:
     - libgmp3-dev
     - ghc-8.4.3
-    - cabal-install-head
+    - cabal-install-2.4
 
 install:
 - rm -rf $HOME/.cabal
