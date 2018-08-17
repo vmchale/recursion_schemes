@@ -22,7 +22,7 @@ interface (Functor f, Base t f) => Recursive (f : Type -> Type) (t : Type) where
   project : t -> f t
 
 ||| Anamorphism, meant to build up a structure recursively.
-ana : (Corecursive f t, Base a f) => (a -> f a) -> a -> t
+ana : (Corecursive f t) => (a -> f a) -> a -> t
 ana g = a'
   where a' x = embed . map a' . g $ x
 
@@ -34,7 +34,7 @@ postpro e g = a'
 ||| Generalized Anamorphism
 ||| @ k A distributive law
 ||| @ g A (f . m)-coalgebra
-gana : (Corecursive f t, Base a f, Monad m) => (k : {b : _} -> m (f b) -> f (m b)) -> (g : a -> f (m a)) -> a -> t
+gana : (Corecursive f t, Monad m) => (k : {b : _} -> m (f b) -> f (m b)) -> (g : a -> f (m a)) -> a -> t
 gana k g = (gan k g) . pure . g
   where gan : (Corecursive f t, Monad m) => (k : {b : _} -> m (f b) -> f (m b)) -> (g : a -> f (m a)) -> m (f (m a)) -> t
         gan k g x = embed . map ((gan k g) . map g . join) . k $ x
@@ -42,7 +42,7 @@ gana k g = (gan k g) . pure . g
 ||| Generalized catamorphism
 ||| @ k A distributive law
 ||| @ g A (f . w)-algebra
-gcata : (Recursive f t, Base a f, Comonad w) => (k : {b:_} -> f (w b) -> w (f b)) -> (g : f (w a) -> a) -> t -> a
+gcata : (Recursive f t, Comonad w) => (k : {b:_} -> f (w b) -> w (f b)) -> (g : f (w a) -> a) -> t -> a
 gcata k g = g . extract . (gcat k g)
   where gcat : (Recursive f t, Comonad w) => (k : {b:_} -> f (w b) -> w (f b)) -> (g : f (w a) -> a) -> t -> w (f (w a))
         gcat k g x = k . map (duplicate . map g . (gcat k g)) . project $ x
@@ -76,7 +76,7 @@ distFutu (Pure fa) = Pure <$> fa
 distFutu (Bind as) = Bind <$> (distFutu <$> as)
 
 ||| Futumorphism
-futu : (Base a f, Corecursive f t) => (a -> f (Free f a)) -> a -> t
+futu : (Corecursive f t) => (a -> f (Free f a)) -> a -> t
 futu = gana distFutu
 
 ||| Distributive law for histomorphisms
@@ -85,7 +85,7 @@ distHisto = unfold g where
   g as = (extract <$> as, unwrap <$> as)
 
 ||| Histomorphism
-histo : (Base a f, Recursive f t) => (f (Cofree f a) -> a) -> t -> a
+histo : (Recursive f t) => (f (Cofree f a) -> a) -> t -> a
 histo = gcata distHisto
 
 ||| Chronomorphism
@@ -93,7 +93,7 @@ chrono : Functor f => (f (Cofree f b) -> b) -> (a -> f (Free f a)) -> a -> b
 chrono = ghylo distHisto distFutu
 
 ||| Catamorphism. Folds a structure. (see [here](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.41.125&rep=rep1&type=pdf))
-cata : (Recursive f t, Base a f) => (f a -> a) -> t -> a
+cata : (Recursive f t) => (f a -> a) -> t -> a
 cata f = c 
   where c x = f . map c . project $ x
 
@@ -103,19 +103,19 @@ prepro e f = c
   where c x = f . map (c . (cata (embed . e))) . project $ x
 
 ||| Catamorphism interweaving two data types.
-dicata : (Recursive f b, Recursive f a, Base (b, a) f) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
+dicata : (Recursive f b, Recursive f a) => (f (b, a) -> b) -> (f (b, a) -> a) -> b -> a
 dicata f g = snd . cata (\x => (f x, g x))
 
 ||| Mutumorphism
-mutu : (Recursive f t, Base t f) => (f (a, a) -> a) -> (f (a, a) -> a) -> t -> a
+mutu : (Recursive f t) => (f (a, a) -> a) -> (f (a, a) -> a) -> t -> a
 mutu f g x = g . map (\x => (mutu g f x, mutu f g x)) . project $ x
 
 ||| Zygomorphism (see [here](http://www.iis.sinica.edu.tw/~scm/pub/mds.pdf) for a neat example)
-zygo : (Recursive f t, Base t f, Base (b, a) f) => (f b -> b) -> (f (b, a) -> a) -> t -> a
+zygo : (Recursive f t) => (f b -> b) -> (f (b, a) -> a) -> t -> a
 zygo f g = snd . cata (\x => (f $ map fst x, g x))
 
 ||| Paramorphism
-para : (Recursive f t, Corecursive f t, Base (t, a) f) => (f (t, a) -> a) -> t -> a
+para : (Recursive f t, Corecursive f t) => (f (t, a) -> a) -> t -> a
 para f = snd . cata (\x => (embed $ map fst x, f x))
 
 ||| Hylomorphism; equivalent to a catamorphism and an anamorphism taken together.

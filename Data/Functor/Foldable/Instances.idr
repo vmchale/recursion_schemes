@@ -35,9 +35,11 @@ data Mu : (Type -> Type) -> Type where
 implementation Functor (Nu f) where
   map g (NuF h a) = NuF h (g a)
 
-implementation (Functor f) => Base t (Nu f) where
+implementation Base t (Nu f) where
 
-implementation (Functor f) => Base (Fix t) f where
+implementation Base (Fix t) f where
+
+implementation Base (Mu f) f where
 
 ||| Create a fix-point with a functor
 fix : f (Fix f) -> Fix f
@@ -66,11 +68,11 @@ implementation Base b (ListF a) where
 implementation Base b (StreamF a) where
 
 ||| Lambek's lemma assures us this function always exists.
-lambek : (Recursive f t, Corecursive f t, Base (f t) f) => (t -> f t)
+lambek : (Recursive f t, Corecursive f t) => (t -> f t)
 lambek = cata (map embed)
 
 ||| The dual of Lambek's lemma.
-colambek : (Recursive f t, Corecursive f t, Base (f t) f) => (f t -> t)
+colambek : (Recursive f t, Corecursive f t) => (f t -> t)
 colambek = ana (map project)
 
 implementation Recursive (StreamF a) (Stream a) where

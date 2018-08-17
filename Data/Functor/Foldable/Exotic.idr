@@ -15,7 +15,7 @@ infixl 9 .*
 (.*) f g x y = f (g x y)
 
 ||| Gibbons' metamorphism. Tear down a structure, transform it, and then build up a new structure
-meta : (Functor f, Base b g, Base a f, Corecursive f t', Recursive g t) => (a -> f a) -> (b -> a) -> (g b -> b) -> t -> t'
+meta : (Functor f, Corecursive f t', Recursive g t) => (a -> f a) -> (b -> a) -> (g b -> b) -> t -> t'
 meta f e g = ana f . e . cata g
 
 ||| Erwig's metamorphism. Essentially a hylomorphism with a natural
