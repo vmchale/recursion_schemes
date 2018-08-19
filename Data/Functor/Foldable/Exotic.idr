@@ -22,7 +22,8 @@ meta f e g = ana f . e . cata g
 ||| transformation in between. This allows us to use more than one functor in a
 ||| hylomorphism.
 hyloPro : (Functor f, Functor g) => (f a -> a) -> ({c:_} -> g c -> f c) -> (b -> g b) -> b -> a
-hyloPro h e k x = h . e . map (hyloPro h e k) . k $ x
+hyloPro h e k = g
+  where g x = h . e . map g . k $ x
 
 ||| A dynamorphism builds up with an anamorphism and tears down with a
 ||| histomorphism. Useful for lexical scoping.  
