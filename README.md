@@ -22,6 +22,19 @@ Then:
 idris --testpkg test.ipkg
 ```
 
+### elba
+
+If you use [elba](https://github.com/elba/elba) to manage your Idris packages,
+adding this package as a dependency is as easy as:
+
+```toml
+# elba.toml
+[dependencies]
+"vmchale/recursion_schemes" = { git = "https://github.com/vmchale/recursion_schemes" }
+```
+
+To run the tests, clone the repository and run `elba test` in it.
+
 ## Use
 
 The classic paper [Functional programming with bananas, lenses, envelopes and
